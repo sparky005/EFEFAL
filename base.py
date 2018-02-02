@@ -11,7 +11,7 @@ app = Flask(__name__)
 def playbook_index():
     client = Elasticsearch()
     # TODO: why did this suddenly stop returning all playbooks
-    s = Search(using=client, index=("%{[@metadata][beat]}-*")).query("match", type='ansible')
+    s = Search(using=client).query("match", type='ansible')
     list_of_playbooks = set([hit.ansible_playbook for hit in s.execute()])
     # can't return a whole list
     # also, right now this returns the same playbook name many times
@@ -34,7 +34,7 @@ def calculate_totals(result):
 @app.route('/runs/<playbook>')
 def runs(playbook):
     client = Elasticsearch()
-    s = Search(using=client, index=("%{[@metadata][beat]}-*")).query("match", ansible_playbook=playbook).filter("term", ansible_type="finish")
+    s = Search(using=client).query("match", ansible_playbook=playbook).filter("term", ansible_type="finish")
     # we have to calculate the totals for all the runs
     # as totals are tallied per host
     totals = [calculate_totals(x.ansible_result) for x in s]
