@@ -4,6 +4,7 @@
 <ul>
     <table>
     <tr>
+        <th>SessionID</th>
         <th>Timestamp</th>
         <th>Playbook</th>
         <th>Ok</th>
@@ -14,6 +15,8 @@
     </tr>
     {% for run, total in runs %}
     <tr>
+    <li><a href="{{ url_for('runs', playbook=playbook) }}"> {{ playbook }}</li>
+    <td><a href="{{ url_for('run_tasks', playbook=playbook, session=run.session) }}">{{ run['session'] }}</a></td>
         <td>{{ run['@timestamp'] }}</td>
         <td>{{ run.ansible_playbook }}</td>
         <td>{{ total.ok }}</td>

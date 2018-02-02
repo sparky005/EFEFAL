@@ -10,9 +10,8 @@ app = Flask(__name__)
 @app.route('/')
 def playbook_index():
     client = Elasticsearch()
-    # TODO: why did this suddenly stop returning all playbooks
     s = Search(using=client).query("match", type='ansible')
-    list_of_playbooks = set([hit.ansible_playbook for hit in s.execute()])
+    list_of_playbooks = set([hit.ansible_playbook for hit in s.scan()])
     # can't return a whole list
     # also, right now this returns the same playbook name many times
     return render_template('playbooks.html', list_of_playbooks=list_of_playbooks)
@@ -38,5 +37,13 @@ def runs(playbook):
     # we have to calculate the totals for all the runs
     # as totals are tallied per host
     totals = [calculate_totals(x.ansible_result) for x in s]
-    runs = zip(s.execute(),totals)
+    runs = zip(s.scan(),totals)
     return render_template('runs.html', runs=runs, playbook=playbook)
+
+@app.route('/runs/tasks/<playbook>/<session>')
+def run_tasks(playbook, session):
+    # TODO we dont actually need the session passed to the template
+    # we just need it to construct the URL
+    # what we actually need to pass to the template is the task list
+    return render_template('tasks.html', playbook=playbook, session=session)
+    pass
