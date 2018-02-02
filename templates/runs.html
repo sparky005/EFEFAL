@@ -1,0 +1,27 @@
+<!doctype html>
+<title>Playbook runs for {{ playbook }} index</title>
+{% block body %}
+<ul>
+    <table>
+    <tr>
+        <th>Timestamp</th>
+        <th>Playbook</th>
+        <th>Ok</th>
+        <th>Failed</th>
+        <th>Unreachable</th>
+        <th>Changed</th>
+        <th>Skipped</th>
+    </tr>
+    {% for run, total in runs %}
+    <tr>
+        <td>{{ run['@timestamp'] }}</td>
+        <td>{{ run.ansible_playbook }}</td>
+        <td>{{ total.ok }}</td>
+        <td>{{ total.failures }}</td>
+        <td>{{ total.unreachable }}</td>
+        <td>{{ total.changed }}</td>
+        <td>{{ total.skipped }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
