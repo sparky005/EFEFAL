@@ -45,5 +45,16 @@ def run_tasks(playbook, session):
     # TODO we dont actually need the session passed to the template
     # we just need it to construct the URL
     # what we actually need to pass to the template is the task list
-    return render_template('tasks.html', playbook=playbook, session=session)
-    pass
+    client = Elasticsearch()
+    s = Search(using=client).query("match_phrase", session=session) \
+                            .filter("term", ansible_type="task")
+    finish = Search(using=client).query("match_phrase", session=session) \
+                            .filter("term", ansible_type="finish")
+    tasks = s.scan()
+    finish = finish.scan()
+    finish = json.loads(list(finish)[0].ansible_result)
+    return render_template('tasks.html',
+                            playbook=playbook,
+                            session=session,
+                            tasks=tasks,
+                            finish=finish)

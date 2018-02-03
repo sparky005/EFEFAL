@@ -1,6 +1,48 @@
 <!doctype html>
-<title>Playbook runs for {{ playbook }} index</title>
+<title>Tasks for {{ playbook }}, session {{ session }}</title>
 {% block body %}
-{{ playbook }}
-{{ session }}
+<!--
+    TODO: add table that shows results by hosts
+    we can do this using the ansible_result section
+    this will have a dict of hosts / results
+-->
+<table>
+    <tr>
+        <th>Host</th>
+        <th>Ok</th>
+        <th>Failures</th>
+        <th>Unreachable</th>
+        <th>Changed</th>
+        <th>Skipped</th>
+    {% for host, results in finish.items() %}
+    <tr>
+        <td>{{ host }}</td>
+        {% for key, value in results.items() %}
+            <td>{{ value }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+<table>
+    <tr>
+        <th>SessionID</th>
+        <th>Timestamp</th>
+        <th>Host</th>
+        <th>Task</th>
+        <th>Status</th>
+    </tr>
+{% for task in tasks %}
+<!-- we have to fix this and do it by host
+    otherwise we're just going to see lots of repeats (per host)
+-->
+    <tr>
+        <td>{{ task.session }}</td>
+        <td>{{ task['@timestamp'] }}</td>
+        <td>{{ task.ansible_host }}</td>
+        <td>{{ task.ansible_task }}</td>
+        <td>{{ task.status }}</td>
+    </tr>
+{% endfor %}
+</table>
 {% endblock %}
