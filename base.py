@@ -17,7 +17,6 @@ def playbook_index():
     return render_template('playbooks.html', list_of_playbooks=list_of_playbooks)
 
 def calculate_totals(result):
-    result = json.loads(result)
     totals = {
                 "ok": 0,
                 "failures": 0,
@@ -36,7 +35,7 @@ def runs(playbook):
     s = Search(using=client).query("match", ansible_playbook=playbook).filter("term", ansible_type="finish")
     # we have to calculate the totals for all the runs
     # as totals are tallied per host
-    totals = [calculate_totals(x.ansible_result) for x in s]
+    totals = [calculate_totals(json.loads(x.ansible_result)) for x in s]
     runs = zip(s.scan(),totals)
     return render_template('runs.html', runs=runs, playbook=playbook)
 
@@ -53,8 +52,10 @@ def run_tasks(playbook, session):
     tasks = s.scan()
     finish = finish.scan()
     finish = json.loads(list(finish)[0].ansible_result)
+    total = calculate_totals(finish)
     return render_template('tasks.html',
                             playbook=playbook,
                             session=session,
                             tasks=tasks,
-                            finish=finish)
+                            finish=finish,
+                            total=total)

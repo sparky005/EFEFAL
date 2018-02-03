@@ -22,6 +22,12 @@
         {% endfor %}
     </tr>
     {% endfor %}
+    <tr>
+        <td>Total</td>
+        {% for key, value in total.items() %}
+            <td>{{ value }}</td>
+        {% endfor %}
+    </tr>
 </table>
 
 <table>
