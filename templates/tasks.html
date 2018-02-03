@@ -32,7 +32,6 @@
 
 <table>
     <tr>
-        <th>SessionID</th>
         <th>Timestamp</th>
         <th>Host</th>
         <th>Task</th>
@@ -43,7 +42,6 @@
     otherwise we're just going to see lots of repeats (per host)
 -->
     <tr>
-        <td>{{ task.session }}</td>
         <td>{{ task['@timestamp'] }}</td>
         <td>{{ task.ansible_host }}</td>
         <td>{{ task.ansible_task }}</td>

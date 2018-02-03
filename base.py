@@ -1,5 +1,6 @@
 import inspect
 import json
+import itertools
 from flask import Flask
 from flask import render_template
 from elasticsearch import Elasticsearch
@@ -28,6 +29,10 @@ def calculate_totals(result):
         for key, value in result[host_result].items():
             totals[key] += value
     return totals
+
+def remove_tasklist_duplicates(task_list):
+    pass
+
 
 @app.route('/runs/<playbook>')
 def runs(playbook):
