@@ -32,7 +32,7 @@ def calculate_totals(result):
 @app.route('/runs/<playbook>')
 def runs(playbook):
     client = Elasticsearch()
-    s = Search(using=client).query("match", ansible_playbook=playbook).filter("term", ansible_type="finish")
+    s = Search(using=client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
     # we have to calculate the totals for all the runs
     # as totals are tallied per host
     totals = [calculate_totals(json.loads(x.ansible_result)) for x in s]
