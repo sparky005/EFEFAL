@@ -14,7 +14,7 @@
     </tr>
     {% for run, total in runs %}
     <tr>
-    <td><a href="{{ url_for('run_tasks', playbook=playbook, session=run.session) }}">{{ run['session'] }}</a></td>
+    <td><a href="{{ url_for('efefal.run_tasks', playbook=playbook, session=run.session) }}">{{ run['session'] }}</a></td>
         <td>{{ run['@timestamp'] }}</td>
         <td>{{ run.ansible_playbook }}</td>
         <td>{{ total.ok }}</td>

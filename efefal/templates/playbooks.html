@@ -3,6 +3,6 @@
 {% block body %}
 <ul>
     {% for playbook in list_of_playbooks %}
-    <li><a href="{{ url_for('runs', playbook=playbook) }}"> {{ playbook }}</li>
+    <li><a href="{{ url_for('efefal.runs', playbook=playbook) }}"> {{ playbook }}</li>
     {% endfor %}
 {% endblock %}

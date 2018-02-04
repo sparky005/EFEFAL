@@ -3,12 +3,14 @@ import json
 import itertools
 from flask import Flask
 from flask import render_template
+from flask import Blueprint
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 
-app = Flask(__name__)
+bp = Blueprint('efefal', __name__)
 
-@app.route('/')
+
+@bp.route('/')
 def playbook_index():
     client = Elasticsearch()
     s = Search(using=client).query("match", type='ansible')
@@ -44,7 +46,7 @@ def remove_tasklist_duplicates(task_list):
     return results
 
 
-@app.route('/runs/<playbook>')
+@bp.route('/runs/<playbook>')
 def runs(playbook):
     client = Elasticsearch()
     s = Search(using=client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
@@ -56,7 +58,7 @@ def runs(playbook):
     runs = zip(s,totals)
     return render_template('runs.html', runs=runs, playbook=playbook)
 
-@app.route('/runs/tasks/<playbook>/<session>')
+@bp.route('/runs/tasks/<playbook>/<session>')
 def run_tasks(playbook, session):
     # TODO we dont actually need the session passed to the template
     # we just need it to construct the URL
@@ -80,3 +82,13 @@ def run_tasks(playbook, session):
                             tasks=tasks,
                             finish=finish,
                             total=total)
+
+
+def create_app(config=None):
+    app = Flask(__name__)
+    app.config.from_object(__name__)
+    app.config.update(config or {})
+    app.register_blueprint(bp)
+    return app
+
+app = create_app()
