@@ -33,7 +33,6 @@
 <table>
     <tr>
         <th>Timestamp</th>
-        <th>Host</th>
         <th>Task</th>
         <th>Status</th>
     </tr>
@@ -43,7 +42,6 @@
 -->
     <tr>
         <td>{{ task['@timestamp'] }}</td>
-        <td>{{ task['ansible_host'] }}</td>
         <td>{{ task['ansible_task'] }}</td>
         <td>{{ task['status'] }}</td>
     </tr>

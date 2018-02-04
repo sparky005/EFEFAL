@@ -31,7 +31,12 @@ def calculate_totals(result):
     return totals
 
 def remove_tasklist_duplicates(task_list):
-    pass
+    results = []
+    for name, group in itertools.groupby(sorted(task_list,
+                                                key=lambda d : d['ansible_task']),
+                                                key=lambda d : d['ansible_task']):
+        results.append(next(group))
+    return results
 
 
 @app.route('/runs/<playbook>')
@@ -56,10 +61,10 @@ def run_tasks(playbook, session):
                             .filter("term", ansible_type="finish")
     tasks = s.scan()
     tasks = [task.to_dict() for task in tasks]
+    tasks = remove_tasklist_duplicates(tasks)
     finish = finish.scan()
     finish = [x.to_dict() for x in finish]
     finish = json.loads(finish[0]['ansible_result'])
-    print(finish)
     total = calculate_totals(finish)
     return render_template('tasks.html',
                             playbook=playbook,
