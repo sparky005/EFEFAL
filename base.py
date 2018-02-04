@@ -55,8 +55,11 @@ def run_tasks(playbook, session):
     finish = Search(using=client).query("match_phrase", session=session) \
                             .filter("term", ansible_type="finish")
     tasks = s.scan()
+    tasks = [task.to_dict() for task in tasks]
     finish = finish.scan()
-    finish = json.loads(list(finish)[0].ansible_result)
+    finish = [x.to_dict() for x in finish]
+    finish = json.loads(finish[0]['ansible_result'])
+    print(finish)
     total = calculate_totals(finish)
     return render_template('tasks.html',
                             playbook=playbook,

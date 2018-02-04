@@ -43,9 +43,9 @@
 -->
     <tr>
         <td>{{ task['@timestamp'] }}</td>
-        <td>{{ task.ansible_host }}</td>
-        <td>{{ task.ansible_task }}</td>
-        <td>{{ task.status }}</td>
+        <td>{{ task['ansible_host'] }}</td>
+        <td>{{ task['ansible_task'] }}</td>
+        <td>{{ task['status'] }}</td>
     </tr>
 {% endfor %}
 </table>
