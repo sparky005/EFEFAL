@@ -14,9 +14,6 @@ def create_app(config=None):
     app.register_blueprint(bp)
     return app
 
-app = create_app()
-client = SearchClient()
-
 @bp.route('/')
 def playbook_index():
     list_of_playbooks = client.playbook_index()
@@ -36,3 +33,6 @@ def run_tasks(playbook, session):
                             tasks=tasks,
                             finish=finish,
                             total=total)
+app = create_app()
+client = SearchClient()
+
