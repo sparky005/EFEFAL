@@ -28,3 +28,29 @@ def test_runs(app):
     assert b'Changed' in rv.data
     assert b'Skipped' in rv.data
     assert b'8262ba60-0930-11e8-8eaf-c48e8ff31cf7' in rv.data
+    assert b'test3.yml' in rv.data
+
+def test_run_tasks(app):
+    rv = app.get('runs/tasks/test3.yml/8262ba60-0930-11e8-8eaf-c48e8ff31cf7')
+    hosts = [b'127.0.0.1', b'localhost']
+    tasks = [
+                b'TASK: Gathering Facts',
+                b'TASK: say hi',
+                b'TASK: say hi 2',
+                b'TASK: say hi 3',
+                b'TASK: say hi 4',
+                b'TASK: fail',
+                b'TASK: change something'
+            ]
+    assert b'Host' in rv.data
+    assert b'Ok' in rv.data
+    assert b'Failures' in rv.data
+    assert b'Unreachable' in rv.data
+    assert b'Changed' in rv.data
+    assert b'Skipped' in rv.data
+    assert b'Timestamp' in rv.data
+    assert b'8262ba60-0930-11e8-8eaf-c48e8ff31cf7' in rv.data
+    for host in hosts:
+        assert host in rv.data
+    for task in tasks:
+        assert task in rv.data
