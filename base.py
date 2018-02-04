@@ -14,9 +14,8 @@ def playbook_index():
     s = Search(using=client).query("match", type='ansible')
     s = [x.to_dict() for x in s]
     s = timestamp_sort(s)
+    # TIL that sets don't actually retain order
     list_of_playbooks = set([hit['ansible_playbook'] for hit in s])
-    # can't return a whole list
-    # also, right now this returns the same playbook name many times
     return render_template('playbooks.html', list_of_playbooks=list_of_playbooks)
 
 def timestamp_sort(hits):
@@ -51,8 +50,10 @@ def runs(playbook):
     s = Search(using=client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
     # we have to calculate the totals for all the runs
     # as totals are tallied per host
-    totals = [calculate_totals(json.loads(x.ansible_result)) for x in s]
-    runs = zip(s.scan(),totals)
+    s = [hit.to_dict() for hit in s]
+    s = timestamp_sort(s)
+    totals = [calculate_totals(json.loads(x['ansible_result'])) for x in s]
+    runs = zip(s,totals)
     return render_template('runs.html', runs=runs, playbook=playbook)
 
 @app.route('/runs/tasks/<playbook>/<session>')
