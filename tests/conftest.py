@@ -11,6 +11,14 @@ def app():
     return app
 
 @pytest.fixture
+def session():
+    return '8262ba60-0930-11e8-8eaf-c48e8ff31cf7'
+
+@pytest.fixture
+def total_keys():
+    return sorted(['ok', 'failures', 'unreachable', 'changed', 'skipped'])
+
+@pytest.fixture
 def playbook_list():
     return set(['test.yml', 'test2.yml', 'test3.yml'])
 
