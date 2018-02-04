@@ -6,6 +6,7 @@ from flask import render_template
 from flask import Blueprint
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
+from efefal.searchclient import SearchClient
 
 bp = Blueprint('efefal', __name__)
 
@@ -18,6 +19,7 @@ def create_app(config=None):
     return app
 
 app = create_app()
+client = SearchClient()
 
 """Helper functions"""
 def timestamp_sort(hits):
@@ -47,15 +49,8 @@ def remove_tasklist_duplicates(task_list):
 
 @bp.route('/')
 def playbook_index():
-    client = Elasticsearch()
-    s = Search(using=client).query("match", type='ansible')
-    s = [x.to_dict() for x in s]
-    s = timestamp_sort(s)
-    # TIL that sets don't actually retain order
-    list_of_playbooks = set([hit['ansible_playbook'] for hit in s])
+    list_of_playbooks = client.playbook_index()
     return render_template('playbooks.html', list_of_playbooks=list_of_playbooks)
-
-
 
 @bp.route('/runs/<playbook>')
 def runs(playbook):
