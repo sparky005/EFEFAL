@@ -11,8 +11,9 @@ def app():
     app = app.test_client()
     return app
 
-
 def test_playbook_index(app):
     rv = app.get('/')
-    print(rv)
+    assert b'test.yml' in rv.data
+    assert b'test2.yml' in rv.data
+    assert b'test3.yml' in rv.data
 
