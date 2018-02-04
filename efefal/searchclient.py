@@ -11,7 +11,7 @@ class SearchClient():
     def timestamp_sort(self, hits):
         hits = sorted(hits, key=lambda d : d['@timestamp'])
         return hits
-    
+
     def calculate_totals(self, result):
         totals = {
                     "ok": 0,
