@@ -1,4 +1,5 @@
 import json
+import itertools
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 
@@ -24,6 +25,14 @@ class SearchClient():
                 totals[key] += value
         return totals
 
+    def remove_tasklist_duplicates(self, task_list):
+        results = []
+        for name, group in itertools.groupby(sorted(task_list,
+                                                    key=lambda d : d['ansible_task']),
+                                                    key=lambda d : d['ansible_task']):
+            results.append(next(group))
+        return results
+
     def playbook_index(self):
         s = Search(using=self.client).query("match", type='ansible')
         s = [x.to_dict() for x in s]
@@ -41,3 +50,18 @@ class SearchClient():
         totals = [self.calculate_totals(json.loads(x['ansible_result'])) for x in s]
         runs = zip(s,totals)
         return runs
+
+    def run_tasks(self, playbook, session):
+        s = Search(using=self.client).query("match_phrase", session=session) \
+                                .filter("term", ansible_type="task")
+        finish = Search(using=self.client).query("match_phrase", session=session) \
+                                .filter("term", ansible_type="finish")
+        tasks = s.scan()
+        tasks = [task.to_dict() for task in tasks]
+        tasks = self.remove_tasklist_duplicates(tasks)
+        tasks = self.timestamp_sort(tasks)
+        finish = finish.scan()
+        finish = [x.to_dict() for x in finish]
+        finish = json.loads(finish[0]['ansible_result'])
+        total = self.calculate_totals(finish)
+        return tasks, finish, total

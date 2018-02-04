@@ -59,22 +59,7 @@ def runs(playbook):
 
 @bp.route('/runs/tasks/<playbook>/<session>')
 def run_tasks(playbook, session):
-    # TODO we dont actually need the session passed to the template
-    # we just need it to construct the URL
-    # what we actually need to pass to the template is the task list
-    client = Elasticsearch()
-    s = Search(using=client).query("match_phrase", session=session) \
-                            .filter("term", ansible_type="task")
-    finish = Search(using=client).query("match_phrase", session=session) \
-                            .filter("term", ansible_type="finish")
-    tasks = s.scan()
-    tasks = [task.to_dict() for task in tasks]
-    tasks = remove_tasklist_duplicates(tasks)
-    tasks = timestamp_sort(tasks)
-    finish = finish.scan()
-    finish = [x.to_dict() for x in finish]
-    finish = json.loads(finish[0]['ansible_result'])
-    total = calculate_totals(finish)
+    tasks, finish, total = client.run_tasks(playbook, session)
     return render_template('tasks.html',
                             playbook=playbook,
                             session=session,
