@@ -10,16 +10,16 @@ from elasticsearch_dsl import Search
 bp = Blueprint('efefal', __name__)
 
 
-@bp.route('/')
-def playbook_index():
-    client = Elasticsearch()
-    s = Search(using=client).query("match", type='ansible')
-    s = [x.to_dict() for x in s]
-    s = timestamp_sort(s)
-    # TIL that sets don't actually retain order
-    list_of_playbooks = set([hit['ansible_playbook'] for hit in s])
-    return render_template('playbooks.html', list_of_playbooks=list_of_playbooks)
+def create_app(config=None):
+    app = Flask(__name__)
+    app.config.from_object(__name__)
+    app.config.update(config or {})
+    app.register_blueprint(bp)
+    return app
 
+app = create_app()
+
+"""Helper functions"""
 def timestamp_sort(hits):
     hits = sorted(hits, key=lambda d : d['@timestamp'])
     return hits
@@ -44,6 +44,17 @@ def remove_tasklist_duplicates(task_list):
                                                 key=lambda d : d['ansible_task']):
         results.append(next(group))
     return results
+
+@bp.route('/')
+def playbook_index():
+    client = Elasticsearch()
+    s = Search(using=client).query("match", type='ansible')
+    s = [x.to_dict() for x in s]
+    s = timestamp_sort(s)
+    # TIL that sets don't actually retain order
+    list_of_playbooks = set([hit['ansible_playbook'] for hit in s])
+    return render_template('playbooks.html', list_of_playbooks=list_of_playbooks)
+
 
 
 @bp.route('/runs/<playbook>')
@@ -82,13 +93,3 @@ def run_tasks(playbook, session):
                             tasks=tasks,
                             finish=finish,
                             total=total)
-
-
-def create_app(config=None):
-    app = Flask(__name__)
-    app.config.from_object(__name__)
-    app.config.update(config or {})
-    app.register_blueprint(bp)
-    return app
-
-app = create_app()
