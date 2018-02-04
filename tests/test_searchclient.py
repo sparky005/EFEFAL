@@ -1,6 +1,8 @@
 import json
 import pytest
 import vcr
+from efefal.searchclient import SearchClient
+client = SearchClient()
 
 def test_timestamp_sort(client, dummy_hits):
     sorted_hits = client.timestamp_sort(dummy_hits)
