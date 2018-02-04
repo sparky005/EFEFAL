@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: '{"query":{"bool":{"filter":[{"term":{"ansible_type":"finish"}}],"must":[{"match_phrase":{"ansible_playbook":"test3.yml"}}]}}}'
+    headers:
+      connection: [keep-alive]
+      content-type: [application/json]
+    method: GET
+    uri: http://localhost:9200/_search
+  response:
+    body: {string: '{"took":2,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":1,"max_score":1.3847194,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"W3vCXWEBOqbY8MU7Ph3O","_score":1.3847194,"_source":{"ansible_playbook_duration":8.078247,"@version":"1","@timestamp":"2018-02-03T22:21:06.617Z","ansible_type":"finish","ansible_result":"{\"127.0.0.1\":
+        {\"ok\": 7, \"failures\": 0, \"unreachable\": 0, \"changed\": 1, \"skipped\":
+        0}, \"localhost\": {\"ok\": 7, \"failures\": 0, \"unreachable\": 0, \"changed\":
+        1, \"skipped\": 0}}","status":"FAILED","port":35750,"ansible_playbook":"test3.yml","type":"ansible","level":"INFO","tags":[],"host":"peterPanda-redux","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","logger_name":"python-logstash-logger","message":"ansible
+        stats","stack_info":null,"session":"8262ba60-0930-11e8-8eaf-c48e8ff31cf7"}}]}}'}
+    headers:
+      content-length: ['940']
+      content-type: [application/json; charset=UTF-8]
+    status: {code: 200, message: OK}
+version: 1
