@@ -19,7 +19,7 @@ def test_remove_tasklist_duplicates(client, dummy_hits):
 def test_calculate_totals(client, dummy_hits, dummy_finish):
     dummy_totals = client.calculate_totals(json.loads(dummy_finish[0]['ansible_result']))
     assert isinstance(dummy_totals, dict), "calculate_totals should return dict"
-    assert ['ok', 'failures', 'unreachable', 'changed', 'skipped'] == list(dummy_totals.keys())
+    assert sorted(['ok', 'failures', 'unreachable', 'changed', 'skipped']) == sorted(list(dummy_totals.keys()))
     for key, value in dummy_totals.items():
         assert isinstance(value, int), "Should have integer totals"
 
