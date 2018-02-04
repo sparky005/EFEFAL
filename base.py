@@ -12,10 +12,16 @@ app = Flask(__name__)
 def playbook_index():
     client = Elasticsearch()
     s = Search(using=client).query("match", type='ansible')
-    list_of_playbooks = set([hit.ansible_playbook for hit in s.scan()])
+    s = [x.to_dict() for x in s]
+    s = timestamp_sort(s)
+    list_of_playbooks = set([hit['ansible_playbook'] for hit in s])
     # can't return a whole list
     # also, right now this returns the same playbook name many times
     return render_template('playbooks.html', list_of_playbooks=list_of_playbooks)
+
+def timestamp_sort(hits):
+    hits = sorted(hits, key=lambda d : d['@timestamp'])
+    return hits
 
 def calculate_totals(result):
     totals = {
@@ -62,6 +68,7 @@ def run_tasks(playbook, session):
     tasks = s.scan()
     tasks = [task.to_dict() for task in tasks]
     tasks = remove_tasklist_duplicates(tasks)
+    tasks = timestamp_sort(tasks)
     finish = finish.scan()
     finish = [x.to_dict() for x in finish]
     finish = json.loads(finish[0]['ansible_result'])
