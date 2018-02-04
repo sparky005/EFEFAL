@@ -11,6 +11,10 @@ def app():
     return app
 
 @pytest.fixture
+def playbook_list():
+    return set(['test.yml', 'test2.yml', 'test3.yml'])
+
+@pytest.fixture
 def client():
     client = SearchClient()
     return client

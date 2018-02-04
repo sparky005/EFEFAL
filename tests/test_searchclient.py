@@ -1,5 +1,6 @@
 import json
 import pytest
+import vcr
 
 def test_timestamp_sort(client, dummy_hits):
     sorted_hits = client.timestamp_sort(dummy_hits)
@@ -21,3 +22,8 @@ def test_calculate_totals(client, dummy_hits, dummy_finish):
     assert ['ok', 'failures', 'unreachable', 'changed', 'skipped'] == list(dummy_totals.keys())
     for key, value in dummy_totals.items():
         assert isinstance(value, int), "Should have integer totals"
+
+@vcr.use_cassette('tests/vcr_cassettes/index.yml')
+def test_playbook_index(client, playbook_list):
+    actual_list = client.playbook_index()
+    assert sorted(actual_list) == sorted(playbook_list)
