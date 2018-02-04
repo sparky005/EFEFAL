@@ -54,14 +54,7 @@ def playbook_index():
 
 @bp.route('/runs/<playbook>')
 def runs(playbook):
-    client = Elasticsearch()
-    s = Search(using=client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
-    # we have to calculate the totals for all the runs
-    # as totals are tallied per host
-    s = [hit.to_dict() for hit in s]
-    s = timestamp_sort(s)
-    totals = [calculate_totals(json.loads(x['ansible_result'])) for x in s]
-    runs = zip(s,totals)
+    runs = client.runs(playbook)
     return render_template('runs.html', runs=runs, playbook=playbook)
 
 @bp.route('/runs/tasks/<playbook>/<session>')
