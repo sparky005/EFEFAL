@@ -41,15 +41,21 @@ class SearchClient():
         list_of_playbooks = set([hit['ansible_playbook'] for hit in s])
         return list_of_playbooks
 
+    def playbook_totals(self, playbook):
+        """gets totals for a single playbook"""
+        s = Search(using=self.client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
+        s = [hit.to_dict() for hit in s]
+        totals = [self.calculate_totals(json.loads(x['ansible_result'])) for x in s]
+        return totals
+
     def runs(self, playbook):
+        #TODO: rename this to playbook_runs
         s = Search(using=self.client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
         # we have to calculate the totals for all the runs
         # as totals are tallied per host
         s = [hit.to_dict() for hit in s]
         s = self.timestamp_sort(s)
-        totals = [self.calculate_totals(json.loads(x['ansible_result'])) for x in s]
-        runs = zip(s,totals)
-        return runs
+        return s
 
     def run_tasks(self, playbook, session):
         s = Search(using=self.client).query("match_phrase", session=session) \
