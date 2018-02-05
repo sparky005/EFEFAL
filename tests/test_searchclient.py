@@ -35,14 +35,14 @@ def test_runs(client, session, total_keys):
     assert isinstance(runs, tuple)
     assert len(runs) == 1
     assert runs[0]['session'] == session
-    assert runs[0]['@timestamp'] == '2018-02-03T22:21:06.617Z'
+    assert runs[0]['@timestamp'] == '2018-02-05T00:51:09.877Z'
     assert runs[0]['ansible_playbook'] == 'test3.yml'
     assert isinstance(totals, tuple)
     assert len(totals) == 1
     assert len(runs) == len(totals), "Totals and runs should be same length"
     assert total_keys == sorted(list(totals[0].keys()))
 
-@vcr.use_cassette('tests/vcr_cassettes/8262ba60-0930-11e8-8eaf-c48e8ff31cf7.yml')
+@vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7.yml')
 def test_run_tasks(client, session, total_keys):
     tasks, finish, total = client.run_tasks('test3.yml', session)
     assert isinstance(tasks, list)

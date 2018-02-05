@@ -18,12 +18,12 @@ def test_runs(app):
     assert b'Unreachable' in rv.data
     assert b'Changed' in rv.data
     assert b'Skipped' in rv.data
-    assert b'8262ba60-0930-11e8-8eaf-c48e8ff31cf7' in rv.data
+    assert b'a5cba87a-0a0e-11e8-b454-c48e8ff31cf7' in rv.data
     assert b'test3.yml' in rv.data
 
-@vcr.use_cassette('tests/vcr_cassettes/8262ba60-0930-11e8-8eaf-c48e8ff31cf7.yml')
+@vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7.yml')
 def test_run_tasks(app):
-    rv = app.get('runs/tasks/test3.yml/8262ba60-0930-11e8-8eaf-c48e8ff31cf7')
+    rv = app.get('runs/tasks/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7')
     hosts = [b'127.0.0.1', b'localhost']
     tasks = [
                 b'TASK: Gathering Facts',
@@ -41,7 +41,7 @@ def test_run_tasks(app):
     assert b'Changed' in rv.data
     assert b'Skipped' in rv.data
     assert b'Timestamp' in rv.data
-    assert b'8262ba60-0930-11e8-8eaf-c48e8ff31cf7' in rv.data
+    assert b'a5cba87a-0a0e-11e8-b454-c48e8ff31cf7' in rv.data
     for host in hosts:
         assert host in rv.data
     for task in tasks:
