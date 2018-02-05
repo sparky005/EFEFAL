@@ -30,17 +30,19 @@ def test_playbook_index(client, playbook_list):
 
 @vcr.use_cassette('tests/vcr_cassettes/test3.yml')
 def test_runs(client, session, total_keys):
-    actual_runs = client.runs('test3.yml')
-    runs, totals = zip(*actual_runs)
-    assert isinstance(runs, tuple)
+    runs = client.runs('test3.yml')
+    assert isinstance(runs, list)
     assert len(runs) == 1
     assert runs[0]['session'] == session
     assert runs[0]['@timestamp'] == '2018-02-05T00:51:09.877Z'
     assert runs[0]['ansible_playbook'] == 'test3.yml'
-    assert isinstance(totals, tuple)
-    assert len(totals) == 1
-    assert len(runs) == len(totals), "Totals and runs should be same length"
-    assert total_keys == sorted(list(totals[0].keys()))
+
+@vcr.use_cassette('tests/vcr_cassettes/test3.yml')
+def test_playbook_totals(client, total_keys):
+    playbook_totals = client.playbook_totals('test3.yml')
+    assert isinstance(playbook_totals, list)
+    assert len(playbook_totals) == 1
+    assert total_keys == sorted(list(playbook_totals[0].keys()))
 
 @vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7.yml')
 def test_run_tasks(client, session, total_keys):
