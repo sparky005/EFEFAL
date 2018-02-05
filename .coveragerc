@@ -3,3 +3,4 @@ omit =
     */python?.?/*
     *__init__*
     */tests/*
+    */templates/*
