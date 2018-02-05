@@ -1,1 +1,2 @@
 import coveralls
+import efefal
