@@ -48,7 +48,7 @@ class SearchClient():
         totals = [self.calculate_totals(json.loads(x['ansible_result'])) for x in s]
         return totals
 
-    def runs(self, playbook):
+    def playbook_runs(self, playbook):
         #TODO: rename this to playbook_runs
         s = Search(using=self.client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
         # we have to calculate the totals for all the runs

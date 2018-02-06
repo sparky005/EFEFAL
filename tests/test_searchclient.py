@@ -30,7 +30,7 @@ def test_playbook_index(client, playbook_list):
 
 @vcr.use_cassette('tests/vcr_cassettes/test3.yml')
 def test_runs(client, session, total_keys):
-    runs = client.runs('test3.yml')
+    runs = client.playbook_runs('test3.yml')
     assert isinstance(runs, list)
     assert len(runs) == 1
     assert runs[0]['session'] == session

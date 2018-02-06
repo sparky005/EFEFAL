@@ -21,7 +21,7 @@ def playbook_index():
 
 @bp.route('/runs/<playbook>')
 def runs(playbook):
-    runs = client.runs(playbook)
+    runs = client.playbook_runs(playbook)
     totals = client.playbook_totals(playbook)
     runs = zip(runs, totals)
     return render_template('runs.html', runs=runs, playbook=playbook)
