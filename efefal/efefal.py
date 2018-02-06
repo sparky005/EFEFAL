@@ -38,3 +38,4 @@ def run_tasks(playbook, session):
 app = create_app()
 client = SearchClient()
 
+print("HI")
