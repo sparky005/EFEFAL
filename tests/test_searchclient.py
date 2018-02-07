@@ -44,14 +44,16 @@ def test_playbook_totals(client, total_keys):
     assert len(playbook_totals) == 1
     assert total_keys == sorted(list(playbook_totals[0].keys()))
 
-@vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7.yml')
+@vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7/tasks.yml')
 def test_run_tasks(client, session, total_keys):
-    tasks, finish, total = client.run_tasks('test3.yml', session)
+    tasks = client.run_tasks('test3.yml', session)
     assert isinstance(tasks, list)
     for task in tasks:
         assert task['ansible_type'] == 'task'
         assert task['session'] == session
+
+@vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7/finish.yml')
+def test_session_finish(client, session):
+    finish = client.session_finish('test3.yml', session)
     assert isinstance(finish, dict)
     assert sorted(['localhost', '127.0.0.1']) == sorted(list(finish.keys()))
-    assert isinstance(total, dict)
-    assert total_keys == sorted(list(total.keys()))
