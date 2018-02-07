@@ -7,7 +7,7 @@ interactions:
     method: GET
     uri: http://localhost:9200/_search
   response:
-    body: {string: '{"took":5,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":1,"max_score":1.9167194,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"wPpyY2EBDN-WjKyhAbdS","_score":1.9167194,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"FAILED","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"localhost\":
+    body: {string: '{"took":1,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":1,"max_score":1.9167194,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"wPpyY2EBDN-WjKyhAbdS","_score":1.9167194,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"FAILED","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"localhost\":
         {\"ok\": 7, \"failures\": 0, \"unreachable\": 0, \"changed\": 1, \"skipped\":
         0}, \"127.0.0.1\": {\"ok\": 7, \"failures\": 0, \"unreachable\": 0, \"changed\":
         1, \"skipped\": 0}}","message":"ansible stats","@timestamp":"2018-02-05T00:51:09.877Z","ansible_type":"finish","host":"peterPanda-redux","ansible_playbook_duration":3.656723}}]}}'}
@@ -23,7 +23,7 @@ interactions:
     method: GET
     uri: http://localhost:9200/_search
   response:
-    body: {string: '{"took":6,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":1,"max_score":1.9167194,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"wPpyY2EBDN-WjKyhAbdS","_score":1.9167194,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"FAILED","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"localhost\":
+    body: {string: '{"took":1,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":1,"max_score":1.9167194,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"wPpyY2EBDN-WjKyhAbdS","_score":1.9167194,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"FAILED","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"localhost\":
         {\"ok\": 7, \"failures\": 0, \"unreachable\": 0, \"changed\": 1, \"skipped\":
         0}, \"127.0.0.1\": {\"ok\": 7, \"failures\": 0, \"unreachable\": 0, \"changed\":
         1, \"skipped\": 0}}","message":"ansible stats","@timestamp":"2018-02-05T00:51:09.877Z","ansible_type":"finish","host":"peterPanda-redux","ansible_playbook_duration":3.656723}}]}}'}
