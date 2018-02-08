@@ -26,7 +26,7 @@ def runs(playbook):
     runs = zip(runs, totals)
     return render_template('runs.html', runs=runs, playbook=playbook)
 
-@bp.route('/sessions/tasks/<playbook>/<session>')
+@bp.route('/sessions/<playbook>/<session>')
 def run_tasks(playbook, session):
     tasks = client.run_tasks(playbook, session)
     finish = client.session_finish(playbook, session)
