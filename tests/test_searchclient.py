@@ -45,8 +45,8 @@ def test_playbook_totals(client, total_keys):
     assert total_keys == sorted(list(playbook_totals[0].keys()))
 
 @vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7/tasks.yml')
-def test_run_tasks(client, session, total_keys):
-    tasks = client.run_tasks('test3.yml', session)
+def test_session_tasks(client, session, total_keys):
+    tasks = client.session_tasks('test3.yml', session)
     assert isinstance(tasks, list)
     for task in tasks:
         assert task['ansible_type'] == 'task'

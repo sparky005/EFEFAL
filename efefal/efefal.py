@@ -27,8 +27,8 @@ def runs(playbook):
     return render_template('runs.html', runs=runs, playbook=playbook)
 
 @bp.route('/sessions/<playbook>/<session>')
-def run_tasks(playbook, session):
-    tasks = client.run_tasks(playbook, session)
+def session_tasks(playbook, session):
+    tasks = client.session_tasks(playbook, session)
     finish = client.session_finish(playbook, session)
     total = client.calculate_totals(finish)
     return render_template('tasks.html',

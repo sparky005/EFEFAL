@@ -57,7 +57,7 @@ class SearchClient():
         s = self.timestamp_sort(s)
         return s
 
-    def run_tasks(self, playbook, session):
+    def session_tasks(self, playbook, session):
         """Get info for a single run (session) of a single playbook"""
         #TODO: rename this to "session_tasks"
         s = Search(using=self.client).query("match_phrase", session=session) \
