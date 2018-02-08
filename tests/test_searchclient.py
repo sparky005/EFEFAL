@@ -51,6 +51,27 @@ def test_session_tasks(client, session, total_keys):
     for task in tasks:
         assert task['ansible_type'] == 'task'
         assert task['session'] == session
+        assert task['ansible_host'] == 'localhost' or '127.0.0.1'
+
+@vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7/tasks_localhost.yml')
+def test_session_tasks(client, session, total_keys):
+    tasks = client.session_tasks('test3.yml', session, 'localhost')
+    assert isinstance(tasks, list)
+    for task in tasks:
+        assert task['ansible_type'] == 'task'
+        assert task['session'] == session
+        assert task['ansible_host'] == 'localhost'
+        assert task['ansible_result'] == 'OK'
+
+@vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7/tasks_127.0.0.1.yml')
+def test_session_tasks(client, session, total_keys):
+    tasks = client.session_tasks('test3.yml', session, '127.0.0.1')
+    assert isinstance(tasks, list)
+    for task in tasks:
+        assert task['ansible_type'] == 'task'
+        assert task['session'] == session
+        assert task['ansible_host'] == '127.0.0.1'
+        assert task['ansible_result'] == 'OK' or 'FAILED'
 
 @vcr.use_cassette('tests/vcr_cassettes/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7/finish.yml')
 def test_session_finish(client, session):

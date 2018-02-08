@@ -57,11 +57,16 @@ class SearchClient():
         s = self.timestamp_sort(s)
         return s
 
-    def session_tasks(self, playbook, session):
+    def session_tasks(self, playbook, session, host=None):
         """Get info for a single run (session) of a single playbook"""
-        #TODO: rename this to "session_tasks"
-        s = Search(using=self.client).query("match_phrase", session=session) \
-                                .filter("term", ansible_type="task")
+        #TODO: add ability to filter and appropriate tests
+        if host:
+            s = Search(using=self.client).query("match_phrase", session=session) \
+                                    .filter("term", ansible_type="task") \
+                                    .filter("term", ansible_host=host)
+        else:
+            s = Search(using=self.client).query("match_phrase", session=session) \
+                                    .filter("term", ansible_type="task")
         tasks = s.scan()
         tasks = [task.to_dict() for task in tasks]
         tasks = self.remove_tasklist_duplicates(tasks)

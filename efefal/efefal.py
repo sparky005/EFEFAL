@@ -2,6 +2,7 @@ import inspect
 from flask import Flask
 from flask import render_template
 from flask import Blueprint
+from flask import request
 from efefal.searchclient import SearchClient
 
 bp = Blueprint('efefal', __name__)
@@ -28,7 +29,8 @@ def sessions(playbook):
 
 @bp.route('/sessions/<playbook>/<session>')
 def session_tasks(playbook, session):
-    tasks = client.session_tasks(playbook, session)
+    host = request.args.get('host')
+    tasks = client.session_tasks(playbook, session, host)
     finish = client.session_finish(playbook, session)
     total = client.calculate_totals(finish)
     return render_template('tasks.html',

@@ -11,7 +11,7 @@
         <th>Skipped</th>
     {% for host, results in finish.items() %}
     <tr>
-        <td>{{ host }}</td>
+        <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session, host=host) }}">{{ host }}</a></td>
         {% for key, value in results.items() %}
             <td>{{ value }}</td>
         {% endfor %}
