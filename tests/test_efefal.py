@@ -9,7 +9,7 @@ def test_playbook_index(app):
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/test3.yml')
 def test_runs(app):
-    rv = app.get('/runs/test3.yml')
+    rv = app.get('/sessions/test3.yml')
     assert b'SessionID' in rv.data
     assert b'Timestamp' in rv.data
     assert b'Playbook' in rv.data
@@ -23,7 +23,7 @@ def test_runs(app):
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7.yml')
 def test_run_tasks(app):
-    rv = app.get('runs/tasks/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7')
+    rv = app.get('sessions/tasks/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7')
     hosts = [b'127.0.0.1', b'localhost']
     tasks = [
                 b'TASK: Gathering Facts',
