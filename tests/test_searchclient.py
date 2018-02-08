@@ -29,13 +29,13 @@ def test_playbook_index(client, playbook_list):
     assert sorted(actual_list) == sorted(playbook_list)
 
 @vcr.use_cassette('tests/vcr_cassettes/test3.yml')
-def test_runs(client, session, total_keys):
-    runs = client.playbook_runs('test3.yml')
-    assert isinstance(runs, list)
-    assert len(runs) == 1
-    assert runs[0]['session'] == session
-    assert runs[0]['@timestamp'] == '2018-02-05T00:51:09.877Z'
-    assert runs[0]['ansible_playbook'] == 'test3.yml'
+def test_sessions(client, session, total_keys):
+    sessions = client.playbook_sessions('test3.yml')
+    assert isinstance(sessions, list)
+    assert len(sessions) == 1
+    assert sessions[0]['session'] == session
+    assert sessions[0]['@timestamp'] == '2018-02-05T00:51:09.877Z'
+    assert sessions[0]['ansible_playbook'] == 'test3.yml'
 
 @vcr.use_cassette('tests/vcr_cassettes/test3.yml')
 def test_playbook_totals(client, total_keys):

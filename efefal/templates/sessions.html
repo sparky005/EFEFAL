@@ -12,11 +12,11 @@
         <th>Changed</th>
         <th>Skipped</th>
     </tr>
-    {% for run, total in runs %}
+    {% for session, total in sessions %}
     <tr>
-    <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=run.session) }}">{{ run['session'] }}</a></td>
-        <td>{{ run['@timestamp'] }}</td>
-        <td>{{ run.ansible_playbook }}</td>
+    <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session.session) }}">{{ session['session'] }}</a></td>
+        <td>{{ session['@timestamp'] }}</td>
+        <td>{{ session.ansible_playbook }}</td>
         <td>{{ total.ok }}</td>
         <td>{{ total.failures }}</td>
         <td>{{ total.unreachable }}</td>

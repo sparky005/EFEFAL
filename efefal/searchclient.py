@@ -50,8 +50,8 @@ class SearchClient():
         totals = [self.calculate_totals(json.loads(x['ansible_result'])) for x in s]
         return totals
 
-    def playbook_runs(self, playbook):
-        """get list of all runs for a single playook"""
+    def playbook_sessions(self, playbook):
+        """get list of all sessions for a single playook"""
         s = Search(using=self.client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
         s = [hit.to_dict() for hit in s]
         s = self.timestamp_sort(s)

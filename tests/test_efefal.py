@@ -9,7 +9,7 @@ def test_playbook_index(app):
     assert b'<li><a href="/sessions/test2.yml"> test2.yml</li>' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/test3.yml')
-def test_runs(app):
+def test_sessions(app):
     rv = app.get('/sessions/test3.yml')
     assert b'SessionID' in rv.data
     assert b'Timestamp' in rv.data

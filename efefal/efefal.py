@@ -20,11 +20,11 @@ def playbook_index():
     return render_template('playbooks.html', list_of_playbooks=list_of_playbooks)
 
 @bp.route('/sessions/<playbook>')
-def runs(playbook):
-    runs = client.playbook_runs(playbook)
+def sessions(playbook):
+    sessions = client.playbook_sessions(playbook)
     totals = client.playbook_totals(playbook)
-    runs = zip(runs, totals)
-    return render_template('runs.html', runs=runs, playbook=playbook)
+    sessions = zip(sessions, totals)
+    return render_template('sessions.html', sessions=sessions, playbook=playbook)
 
 @bp.route('/sessions/<playbook>/<session>')
 def session_tasks(playbook, session):
