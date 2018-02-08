@@ -7,7 +7,7 @@ interactions:
     method: GET
     uri: http://localhost:9200/_search?scroll=5m&size=1000
   response:
-    body: {string: '{"_scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAF6FjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABfxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAX0WOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAF7FjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABfhY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAXwWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ==","took":8,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":14,"max_score":null,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"sfpyY2EBDN-WjKyhAbdM","_score":null,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"ansible_facts\":
+    body: {string: '{"_scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAKUFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAAClRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApYWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAKYFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACmRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApcWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ==","took":3,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":14,"max_score":null,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"sfpyY2EBDN-WjKyhAbdM","_score":null,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"ansible_facts\":
         {\"ansible_all_ipv4_addresses\": [\"172.31.98.226\", \"172.17.0.1\"], \"ansible_all_ipv6_addresses\":
         [\"fe80::8a7e:ee36:6fd2:719c\", \"fe80::42:58ff:fef6:2436\", \"fe80::5838:6bff:fe95:ca39\"],
         \"ansible_apparmor\": {\"status\": \"disabled\"}, \"ansible_architecture\":
@@ -573,20 +573,20 @@ interactions:
       content-type: [application/json; charset=UTF-8]
     status: {code: 200, message: OK}
 - request:
-    body: '{"scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAF6FjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABfxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAX0WOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAF7FjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABfhY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAXwWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ=="}'
+    body: '{"scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAKUFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAAClRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApYWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAKYFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACmRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApcWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ=="}'
     headers:
       connection: [keep-alive]
       content-type: [application/json]
     method: GET
     uri: http://localhost:9200/_search/scroll?scroll=5m
   response:
-    body: {string: '{"_scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAF6FjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABfxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAX0WOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAF7FjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABfhY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAXwWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ==","took":1,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":14,"max_score":null,"hits":[]}}'}
+    body: {string: '{"_scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAKUFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAAClRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApYWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAKYFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACmRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApcWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ==","took":1,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":14,"max_score":null,"hits":[]}}'}
     headers:
       content-length: ['423']
       content-type: [application/json; charset=UTF-8]
     status: {code: 200, message: OK}
 - request:
-    body: '{"scroll_id":["DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAF6FjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABfxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAX0WOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAF7FjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABfhY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAXwWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ=="]}'
+    body: '{"scroll_id":["DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAKUFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAAClRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApYWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAKYFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACmRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApcWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ=="]}'
     headers:
       connection: [keep-alive]
       content-type: [application/json]
@@ -606,7 +606,7 @@ interactions:
     method: GET
     uri: http://localhost:9200/_search?scroll=5m&size=1000
   response:
-    body: {string: '{"_scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAGAFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABhRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAYEWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAGCFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABgxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAYQWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ==","took":4,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":1,"max_score":null,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"wPpyY2EBDN-WjKyhAbdS","_score":null,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"FAILED","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"localhost\":
+    body: {string: '{"_scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAKaFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACmxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApwWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAKdFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACnxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAp4WOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ==","took":1,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":1,"max_score":null,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"wPpyY2EBDN-WjKyhAbdS","_score":null,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"FAILED","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"localhost\":
         {\"ok\": 7, \"failures\": 0, \"unreachable\": 0, \"changed\": 1, \"skipped\":
         0}, \"127.0.0.1\": {\"ok\": 7, \"failures\": 0, \"unreachable\": 0, \"changed\":
         1, \"skipped\": 0}}","message":"ansible stats","@timestamp":"2018-02-05T00:51:09.877Z","ansible_type":"finish","host":"peterPanda-redux","ansible_playbook_duration":3.656723},"sort":[11]}]}}'}
@@ -615,20 +615,20 @@ interactions:
       content-type: [application/json; charset=UTF-8]
     status: {code: 200, message: OK}
 - request:
-    body: '{"scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAGAFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABhRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAYEWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAGCFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABgxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAYQWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ=="}'
+    body: '{"scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAKaFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACmxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApwWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAKdFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACnxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAp4WOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ=="}'
     headers:
       connection: [keep-alive]
       content-type: [application/json]
     method: GET
     uri: http://localhost:9200/_search/scroll?scroll=5m
   response:
-    body: {string: '{"_scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAGAFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABhRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAYEWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAGCFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABgxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAYQWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ==","took":1,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":1,"max_score":null,"hits":[]}}'}
+    body: {string: '{"_scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAKaFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACmxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApwWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAKdFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACnxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAp4WOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ==","took":1,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":1,"max_score":null,"hits":[]}}'}
     headers:
       content-length: ['422']
       content-type: [application/json; charset=UTF-8]
     status: {code: 200, message: OK}
 - request:
-    body: '{"scroll_id":["DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAGAFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABhRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAYEWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAGCFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAABgxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAYQWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ=="]}'
+    body: '{"scroll_id":["DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAKaFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACmxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAApwWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAKdFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAACnxY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAAAp4WOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ=="]}'
     headers:
       connection: [keep-alive]
       content-type: [application/json]

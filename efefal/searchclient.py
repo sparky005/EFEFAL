@@ -26,6 +26,8 @@ class SearchClient():
         return totals
 
     def remove_tasklist_duplicates(self, task_list):
+        # this has the side-effect of removing same-named tasks
+        # oh well
         results = []
         for name, group in itertools.groupby(sorted(task_list,
                                                     key=lambda d : d['ansible_task']),
@@ -42,32 +44,35 @@ class SearchClient():
         return list_of_playbooks
 
     def playbook_totals(self, playbook):
-        """gets totals for a single playbook"""
+        """gets totals for each run of a single playbook"""
         s = Search(using=self.client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
         s = [hit.to_dict() for hit in s]
         totals = [self.calculate_totals(json.loads(x['ansible_result'])) for x in s]
         return totals
 
     def playbook_runs(self, playbook):
-        #TODO: rename this to playbook_runs
+        """get list of all runs for a single playook"""
         s = Search(using=self.client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
-        # we have to calculate the totals for all the runs
-        # as totals are tallied per host
         s = [hit.to_dict() for hit in s]
         s = self.timestamp_sort(s)
         return s
 
     def run_tasks(self, playbook, session):
+        """Get info for a single run (session) of a single playbook"""
+        #TODO: rename this to "session_tasks"
         s = Search(using=self.client).query("match_phrase", session=session) \
                                 .filter("term", ansible_type="task")
-        finish = Search(using=self.client).query("match_phrase", session=session) \
-                                .filter("term", ansible_type="finish")
         tasks = s.scan()
         tasks = [task.to_dict() for task in tasks]
         tasks = self.remove_tasklist_duplicates(tasks)
         tasks = self.timestamp_sort(tasks)
+        return tasks
+
+    def session_finish(self, playbook, session):
+        """Get finish information for a single playbook run"""
+        finish = Search(using=self.client).query("match_phrase", session=session) \
+                                .filter("term", ansible_type="finish")
         finish = finish.scan()
         finish = [x.to_dict() for x in finish]
         finish = json.loads(finish[0]['ansible_result'])
-        total = self.calculate_totals(finish)
-        return tasks, finish, total
+        return finish
