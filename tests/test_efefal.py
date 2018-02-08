@@ -6,6 +6,7 @@ def test_playbook_index(app):
     assert b'test.yml' in rv.data
     assert b'test2.yml' in rv.data
     assert b'test3.yml' in rv.data
+    assert b'<li><a href="/sessions/test2.yml"> test2.yml</li>' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/test3.yml')
 def test_runs(app):
@@ -20,6 +21,7 @@ def test_runs(app):
     assert b'Skipped' in rv.data
     assert b'a5cba87a-0a0e-11e8-b454-c48e8ff31cf7' in rv.data
     assert b'test3.yml' in rv.data
+    assert b'<a href="/sessions/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7">a5cba87a-0a0e-11e8-b454-c48e8ff31cf7</a>' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7.yml')
 def test_run_tasks(app):
