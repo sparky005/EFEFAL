@@ -48,6 +48,7 @@ def test_playbook_totals(client, total_keys):
 def test_session_tasks(client, session, total_keys):
     tasks = client.session_tasks('test3.yml', session)
     assert isinstance(tasks, list)
+    assert len(tasks) > 0
     for task in tasks:
         assert task['ansible_type'] == 'task'
         assert task['session'] == session
@@ -57,6 +58,7 @@ def test_session_tasks(client, session, total_keys):
 def test_session_tasks(client, session, total_keys):
     tasks = client.session_tasks('test3.yml', session, 'localhost')
     assert isinstance(tasks, list)
+    assert len(tasks) > 0
     for task in tasks:
         assert task['ansible_type'] == 'task'
         assert task['session'] == session
