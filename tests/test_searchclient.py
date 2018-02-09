@@ -85,6 +85,17 @@ def test_session_tasks_127_failed(client, session, total_keys):
     assert isinstance(tasks, list)
     assert len(tasks) == 0, "this should return nothing"
 
+@vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/tasks_127.0.0.1_ok.yml')
+def test_session_tasks_127_ok(client, session, total_keys):
+    tasks = client.session_tasks('test3.yml', session, '127.0.0.1', 'OK')
+    assert isinstance(tasks, list)
+    assert len(tasks) == 7
+    for task in tasks:
+        assert task['ansible_type'] == 'task'
+        assert task['session'] == session
+        assert task['ansible_host'] == '127.0.0.1'
+        assert task['status'] == 'OK'
+
 @vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/finish.yml')
 def test_session_finish(client, session):
     finish = client.session_finish('test3.yml', session)

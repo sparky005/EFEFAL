@@ -59,12 +59,11 @@ class SearchClient():
 
     def session_tasks(self, playbook, session, host=None, status=None):
         """Get info for a single run (session) of a single playbook"""
-        #TODO: add ability to filter and appropriate tests
         if host and status:
             s = Search(using=self.client).query("match_phrase", session=session) \
                                     .filter("term", ansible_type="task") \
                                     .filter("term", ansible_host=host) \
-                                    .filter("term", status=status)
+                                    .filter("match", status=status)
         elif host:
             s = Search(using=self.client).query("match_phrase", session=session) \
                                     .filter("term", ansible_type="task") \
@@ -72,7 +71,7 @@ class SearchClient():
         elif status:
             s = Search(using=self.client).query("match_phrase", session=session) \
                                     .filter("term", ansible_type="task") \
-                                    .filter("term", status=status)
+                                    .filter("match", status=status)
         else:
             s = Search(using=self.client).query("match_phrase", session=session) \
                                     .filter("term", ansible_type="task")
