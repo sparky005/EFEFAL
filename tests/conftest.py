@@ -12,7 +12,7 @@ def app():
 
 @pytest.fixture
 def session():
-    return 'a5cba87a-0a0e-11e8-b454-c48e8ff31cf7'
+    return 'c8846a16-0c82-11e8-a65f-c48e8ff31cf7'
 
 @pytest.fixture
 def total_keys():

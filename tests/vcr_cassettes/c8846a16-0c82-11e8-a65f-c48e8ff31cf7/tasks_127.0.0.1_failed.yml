@@ -1,0 +1,28 @@
+interactions:
+- request:
+    body: '{"query":{"bool":{"filter":[{"term":{"ansible_type":"task"}},{"term":{"ansible_host":"127.0.0.1"}},{"term":{"status":"FAILED"}}],"must":[{"match_phrase":{"session":"c8846a16-0c82-11e8-a65f-c48e8ff31cf7"}}]}},"sort":"_doc"}'
+    headers:
+      connection: [keep-alive]
+      content-type: [application/json]
+    method: GET
+    uri: http://localhost:9200/_search?scroll=5m&size=1000
+  response:
+    body: {string: '{"_scroll_id":"DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAkFFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAAJBhY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAACQcWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAkIFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAAJCRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAACQoWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ==","took":8,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":0,"max_score":null,"hits":[]}}'}
+    headers:
+      content-length: ['422']
+      content-type: [application/json; charset=UTF-8]
+    status: {code: 200, message: OK}
+- request:
+    body: '{"scroll_id":["DnF1ZXJ5VGhlbkZldGNoBgAAAAAAAAkFFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAAJBhY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAACQcWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQAAAAAAAAkIFjlYMTVRLXZQUmItc3BHRTU2X2hzZEEAAAAAAAAJCRY5WDE1US12UFJiLXNwR0U1Nl9oc2RBAAAAAAAACQoWOVgxNVEtdlBSYi1zcEdFNTZfaHNkQQ=="]}'
+    headers:
+      connection: [keep-alive]
+      content-type: [application/json]
+    method: DELETE
+    uri: http://localhost:9200/_search/scroll
+  response:
+    body: {string: '{"succeeded":true,"num_freed":6}'}
+    headers:
+      content-length: ['32']
+      content-type: [application/json; charset=UTF-8]
+    status: {code: 200, message: OK}
+version: 1
