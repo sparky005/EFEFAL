@@ -52,7 +52,7 @@ def test_session_tasks_default(client, session, total_keys):
     for task in tasks:
         assert task['ansible_type'] == 'task'
         assert task['session'] == session
-        assert task['ansible_host'] == 'localhost' or '127.0.0.1'
+        assert task['ansible_host'] in ['localhost', '127.0.0.1']
 
 @vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/tasks_localhost.yml')
 def test_session_tasks_localhost(client, session, total_keys):
@@ -74,8 +74,7 @@ def test_session_tasks_127(client, session, total_keys):
         assert task['ansible_type'] == 'task'
         assert task['session'] == session
         assert task['ansible_host'] == '127.0.0.1'
-        #assert task['ansible_result'] == 'OK'
-        print(task['ansible_result'])
+        assert task['status'] == 'OK'
 
         # need tests for: just status (each host) and then with both
         # so three more test cases
@@ -84,12 +83,7 @@ def test_session_tasks_127(client, session, total_keys):
 def test_session_tasks_127_failed(client, session, total_keys):
     tasks = client.session_tasks('test3.yml', session, '127.0.0.1', 'FAILED')
     assert isinstance(tasks, list)
-    #assert len(tasks) > 0
-    for task in tasks:
-        assert task['ansible_type'] == 'task'
-        assert task['session'] == session
-        assert task['ansible_host'] == '127.0.0.1'
-        assert task['ansible_result'] == 'OK' or 'FAILED'
+    assert len(tasks) == 0, "this should return nothing"
 
 @vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/finish.yml')
 def test_session_finish(client, session):
