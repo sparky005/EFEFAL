@@ -23,9 +23,9 @@ def test_sessions(app):
     assert b'test3.yml' in rv.data
     assert b'<a href="/sessions/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7">a5cba87a-0a0e-11e8-b454-c48e8ff31cf7</a>' in rv.data
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7.yml')
-def test_session_tasks(app):
-    rv = app.get('sessions/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7.yml')
+def test_session_tasks_all(app):
+    rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7')
     hosts = [b'127.0.0.1', b'localhost']
     tasks = [
                 b'TASK: Gathering Facts',
@@ -43,14 +43,14 @@ def test_session_tasks(app):
     assert b'Changed' in rv.data
     assert b'Skipped' in rv.data
     assert b'Timestamp' in rv.data
-    assert b'a5cba87a-0a0e-11e8-b454-c48e8ff31cf7' in rv.data
+    assert b'c8846a16-0c82-11e8-a65f-c48e8ff31cf7' in rv.data
     for host in hosts:
         assert host in rv.data
     for task in tasks:
         assert task in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost.yml')
-def test_session_tasks(app):
+def test_session_tasks_localhost(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=localhost')
     hosts = [b'localhost']
     tasks = [
@@ -77,7 +77,7 @@ def test_session_tasks(app):
     assert b'FAILED' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1.yml')
-def test_session_tasks(app):
+def test_session_tasks_127(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=127.0.0.1')
     hosts = [b'127.0.0.1']
     tasks = [
