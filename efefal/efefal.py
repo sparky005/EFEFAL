@@ -30,7 +30,8 @@ def sessions(playbook):
 @bp.route('/sessions/<playbook>/<session>')
 def session_tasks(playbook, session):
     host = request.args.get('host')
-    tasks = client.session_tasks(playbook, session, host)
+    status = request.args.get('status')
+    tasks = client.session_tasks(playbook, session, host, status)
     finish = client.session_finish(playbook, session)
     total = client.calculate_totals(finish)
     return render_template('tasks.html',
