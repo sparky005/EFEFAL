@@ -16,7 +16,7 @@ def session():
 
 @pytest.fixture
 def total_keys():
-    return sorted(['ok', 'failures', 'unreachable', 'changed', 'skipped'])
+    return sorted(['ok', 'failed', 'unreachable', 'changed', 'skipped'])
 
 @pytest.fixture
 def playbook_list():

@@ -15,14 +15,17 @@ class SearchClient():
     def calculate_totals(self, result):
         totals = {
                     "ok": 0,
-                    "failures": 0,
+                    "failed": 0,
                     "unreachable": 0,
                     "changed": 0,
                     "skipped": 0,
                 }
         for host_result in result.keys():
             for key, value in result[host_result].items():
-                totals[key] += value
+                if key == 'failures':
+                    totals['failed'] += value
+                else:
+                    totals[key] += value
         return totals
 
     def remove_tasklist_duplicates(self, task_list):
@@ -88,4 +91,11 @@ class SearchClient():
         finish = finish.scan()
         finish = [x.to_dict() for x in finish]
         finish = json.loads(finish[0]['ansible_result'])
+        for host in finish:
+            finish[host]['failed'] = finish[host].pop('failures')
+
+        # some hackery to reorder the dict
+        for key in ["ok", "failed", "unreachable", "changed", "skipped"]:
+            for host in finish:
+                finish[host][key] = finish[host].pop(key)
         return finish

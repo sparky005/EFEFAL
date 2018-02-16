@@ -13,7 +13,7 @@
     <tr>
         <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session, host=host) }}">{{ host }}</a></td>
         {% for key, value in results.items() %}
-            <td>{{ value }}</td>
+        <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session, host=host, status=key) }}">{{ value }}</a></td>
         {% endfor %}
     </tr>
     {% endfor %}
