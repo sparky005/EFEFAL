@@ -13,6 +13,7 @@ class SearchClient():
         return hits
 
     def calculate_totals(self, result):
+        """Takes a 'finish' as a param and provides totals"""
         totals = {
                     "ok": 0,
                     "failed": 0,
@@ -47,10 +48,11 @@ class SearchClient():
         return list_of_playbooks
 
     def playbook_totals(self, playbook):
-        """gets totals for each run of a single playbook"""
+        """gets totals for each run of a single playbook using a 'finish' object"""
         s = Search(using=self.client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
         s = [hit.to_dict() for hit in s]
-        totals = [self.calculate_totals(json.loads(x['ansible_result'])) for x in s]
+        sessions = [hit['session'] for hit in s]
+        totals = [self.totals(session) for session in sessions]
         return totals
 
     def playbook_sessions(self, playbook):
@@ -99,3 +101,43 @@ class SearchClient():
             for host in finish:
                 finish[host][key] = finish[host].pop(key)
         return finish
+
+    def get_hosts(self, session):
+        """Get the hosts that were in a given session"""
+        s = Search(using=self.client).query("match_phrase", session=session) \
+                                    .filter("term", ansible_type="finish")
+        finishes = s.scan()
+        finishes = [x.to_dict() for x in finishes]
+        return list(json.loads(finishes[0]['ansible_result']).keys())
+
+    def totals(self, session, host=None):
+        """
+        Calculates and returns the totals for a given session
+        if host is given, only get totals for the single host
+        else, the entire session
+        """
+        if host:
+            s = Search(using=self.client).query("match_phrase", session=session) \
+                                    .filter("term", ansible_type="task") \
+                                    .filter("term", ansible_host=host)
+        else:
+            s = Search(using=self.client).query("match_phrase", session=session) \
+                                        .filter("term", ansible_type="task")
+        tasks = s.scan()
+        tasks = [task.to_dict() for task in tasks]
+        totals = {
+                    "OK": 0,
+                    "FAILED": 0,
+                    "UNREACHABLE": 0,
+                    "CHANGED": 0,
+                    "SKIPPED": 0,
+                }
+        for task in tasks:
+            result = task['status']
+            if result == 'OK':
+                # check if it was a change
+                if json.loads(task['ansible_result'])['changed'] == True:
+                    result = 'CHANGED'
+            totals[result] += 1
+        return totals
+

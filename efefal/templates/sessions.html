@@ -17,11 +17,11 @@
     <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session.session) }}">{{ session['session'] }}</a></td>
         <td>{{ session['@timestamp'] }}</td>
         <td>{{ session.ansible_playbook }}</td>
-        <td>{{ total.ok }}</td>
-        <td>{{ total.failures }}</td>
-        <td>{{ total.unreachable }}</td>
-        <td>{{ total.changed }}</td>
-        <td>{{ total.skipped }}</td>
+        <td>{{ total.OK }}</td>
+        <td>{{ total.FAILED}}</td>
+        <td>{{ total.UNREACHABLE }}</td>
+        <td>{{ total.CHANGED }}</td>
+        <td>{{ total.SKIPPED }}</td>
     </tr>
     {% endfor %}
 </table>

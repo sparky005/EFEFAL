@@ -19,6 +19,10 @@ def total_keys():
     return sorted(['ok', 'failed', 'unreachable', 'changed', 'skipped'])
 
 @pytest.fixture
+def total_keys_upper():
+    return sorted(['OK', 'FAILED', 'UNREACHABLE', 'CHANGED', 'SKIPPED'])
+
+@pytest.fixture
 def playbook_list():
     return set(['test.yml', 'test2.yml', 'test3.yml'])
 

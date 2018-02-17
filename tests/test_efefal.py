@@ -1,6 +1,6 @@
 import vcr
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/index.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/index.yml', record_mode='new_episodes')
 def test_playbook_index(app):
     rv = app.get('/')
     assert b'test.yml' in rv.data
@@ -8,7 +8,7 @@ def test_playbook_index(app):
     assert b'test3.yml' in rv.data
     assert b'<li><a href="/sessions/test2.yml"> test2.yml</li>' in rv.data
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/test3.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/test3.yml', record_mode='new_episodes')
 def test_sessions(app):
     rv = app.get('/sessions/test3.yml')
     assert b'SessionID' in rv.data
@@ -22,8 +22,17 @@ def test_sessions(app):
     assert b'a5cba87a-0a0e-11e8-b454-c48e8ff31cf7' in rv.data
     assert b'test3.yml' in rv.data
     assert b'<a href="/sessions/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7">a5cba87a-0a0e-11e8-b454-c48e8ff31cf7</a>' in rv.data
+    assert b"""    <td><a href="/sessions/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7">a5cba87a-0a0e-11e8-b454-c48e8ff31cf7</a></td>
+        <td>2018-02-05T00:51:09.877Z</td>
+        <td>test3.yml</td>
+        <td>10</td>
+        <td>2</td>
+        <td>0</td>
+        <td>2</td>
+        <td>0</td>
+    </tr>""" in rv.data
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7.yml', record_mode='new_episodes')
 def test_session_tasks_all(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7')
     hosts = [b'127.0.0.1', b'localhost']
@@ -49,7 +58,7 @@ def test_session_tasks_all(app):
     for task in tasks:
         assert task in rv.data
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost.yml', record_mode='new_episodes')
 def test_session_tasks_localhost(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=localhost')
     hosts = [b'localhost']
@@ -77,7 +86,7 @@ def test_session_tasks_localhost(app):
     assert b'FAILED' in rv.data
     assert b'OK' in rv.data
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1.yml', record_mode='new_episodes')
 def test_session_tasks_127(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=127.0.0.1')
     hosts = [b'127.0.0.1']
@@ -105,7 +114,7 @@ def test_session_tasks_127(app):
     assert b'FAILED' not in rv.data
     assert b'OK' in rv.data
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1_failed.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1_failed.yml', record_mode='new_episodes')
 def test_session_tasks_127_failed(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=127.0.0.1&status=FAILED')
     hosts = [b'127.0.0.1']
@@ -132,7 +141,7 @@ def test_session_tasks_127_failed(app):
         assert task not in rv.data, "No failed tasks should appear for 127"
     assert b'OK' not in rv.data, "OK should not appear when filtering to failed"
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1_ok.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1_ok.yml', record_mode='new_episodes')
 def test_session_tasks_127_ok(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=127.0.0.1&status=OK')
     hosts = [b'127.0.0.1']
@@ -160,7 +169,7 @@ def test_session_tasks_127_ok(app):
     assert b'OK' in rv.data
     assert b'FAILED' not in rv.data, "FAILED should not appear when filtering OK"
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost_failed.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost_failed.yml', record_mode='new_episodes')
 def test_session_tasks_localhost_failed(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=localhost&status=FAILED')
     hosts = [b'localhost']
@@ -192,7 +201,7 @@ def test_session_tasks_localhost_failed(app):
     assert b'FAILED' in rv.data
     assert b'OK' not in rv.data, "OK should not appear when filtering FAILED"
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost_ok.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost_ok.yml', record_mode='new_episodes')
 def test_session_tasks_localhost_ok(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=localhost&status=OK')
     hosts = [b'localhost']
@@ -224,7 +233,7 @@ def test_session_tasks_localhost_ok(app):
     assert b'OK' in rv.data
     assert b'FAILED' not in rv.data, "FAILED should not appear when filtering OK"
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_all_ok.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_all_ok.yml', record_mode='new_episodes')
 def test_session_tasks_all_ok(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?status=OK')
     hosts = [b'localhost', b'127.0.0.1']
@@ -252,7 +261,7 @@ def test_session_tasks_all_ok(app):
     assert b'OK' in rv.data
     assert b'FAILED' not in rv.data, "OK should not appear when filtering FAILED"
 
-@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_all_failed.yml')
+@vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_all_failed.yml', record_mode='new_episodes')
 def test_session_tasks_all_failed(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?status=FAILED')
     hosts = [b'localhost', b'127.0.0.1']
