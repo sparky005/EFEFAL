@@ -64,7 +64,19 @@ class SearchClient():
 
     def session_tasks(self, playbook, session, host=None, status=None):
         """Get info for a single run (session) of a single playbook"""
-        if host and status:
+        # handle the special case (changed) first
+        if host and status == 'CHANGED':
+            s = Search(using=self.client).query("match_phrase", session=session) \
+                                    .filter("term", ansible_type="task") \
+                                    .filter("match", status='OK') \
+                                    .filter("term", ansible_host=host) \
+                                    .filter("match_phrase", ansible_result="changed: true")
+        elif status == 'CHANGED':
+            s = Search(using=self.client).query("match_phrase", session=session) \
+                                    .filter("term", ansible_type="task") \
+                                    .filter("match", status='OK') \
+                                    .filter("match_phrase", ansible_result="changed: true")
+        elif host and status:
             s = Search(using=self.client).query("match_phrase", session=session) \
                                     .filter("term", ansible_type="task") \
                                     .filter("term", ansible_host=host) \
