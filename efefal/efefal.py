@@ -33,7 +33,7 @@ def session_tasks(playbook, session):
     status = request.args.get('status')
     tasks = client.session_tasks(playbook, session, host, status)
     finish = client.session_finish(playbook, session)
-    total = client.calculate_totals(finish)
+    total = client.totals(session)
     return render_template('tasks.html',
                             playbook=playbook,
                             session=session,
