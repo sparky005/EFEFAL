@@ -34,11 +34,15 @@ def session_tasks(playbook, session):
     tasks = client.session_tasks(playbook, session, host, status)
     finish = client.session_finish(playbook, session)
     total = client.totals(session)
+    hosts = list(finish.keys())
+    host_totals = {}
+    for host in hosts:
+        host_totals[host] = client.totals(session, host)
     return render_template('tasks.html',
                             playbook=playbook,
                             session=session,
                             tasks=tasks,
-                            finish=finish,
+                            finish=host_totals,
                             total=total)
 app = create_app()
 client = SearchClient()
