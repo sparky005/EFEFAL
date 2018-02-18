@@ -126,6 +126,39 @@ def test_session_tasks_all_ok(client, session, total_keys):
         assert task['ansible_host'] in ['localhost', '127.0.0.1']
         assert task['status'] == 'OK'
 
+@vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/tasks_all_changed.yml', record_mode='new_episodes')
+def test_session_tasks_all_ok(client, session, total_keys):
+    tasks = client.session_tasks('test3.yml', session, None, 'CHANGED')
+    assert isinstance(tasks, list)
+    assert len(tasks) == 1
+    for task in tasks:
+        assert task['ansible_type'] == 'task'
+        assert task['session'] == session
+        assert task['ansible_host'] in ['localhost', '127.0.0.1']
+        assert task['status'] == 'OK'
+
+@vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/tasks_localhost_changed.yml', record_mode='new_episodes')
+def test_session_tasks_all_ok(client, session, total_keys):
+    tasks = client.session_tasks('test3.yml', session, 'localhost', 'CHANGED')
+    assert isinstance(tasks, list)
+    assert len(tasks) == 1
+    for task in tasks:
+        assert task['ansible_type'] == 'task'
+        assert task['session'] == session
+        assert task['ansible_host'] in ['localhost']
+        assert task['status'] == 'OK'
+
+@vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/tasks_127_changed.yml', record_mode='new_episodes')
+def test_session_tasks_all_ok(client, session, total_keys):
+    tasks = client.session_tasks('test3.yml', session, '127.0.0.1', 'CHANGED')
+    assert isinstance(tasks, list)
+    assert len(tasks) == 1
+    for task in tasks:
+        assert task['ansible_type'] == 'task'
+        assert task['session'] == session
+        assert task['ansible_host'] in ['127.0.0.1']
+        assert task['status'] == 'OK'
+
 @vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/tasks_all_failed.yml', record_mode='new_episodes')
 def test_session_tasks_all_failed(client, session, total_keys):
     tasks = client.session_tasks('test3.yml', session, None, 'FAILED')
