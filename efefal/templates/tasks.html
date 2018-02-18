@@ -20,7 +20,7 @@
     <tr>
         <td>Total</td>
         {% for key, value in total.items() %}
-            <td>{{ value }}</td>
+        <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session, status=key) }}">{{ value }}</a></td>
         {% endfor %}
     </tr>
 </table>
