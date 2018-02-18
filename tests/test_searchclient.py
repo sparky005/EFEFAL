@@ -127,7 +127,7 @@ def test_session_tasks_all_ok(client, session, total_keys):
         assert task['status'] == 'OK'
 
 @vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/tasks_all_changed.yml', record_mode='new_episodes')
-def test_session_tasks_all_ok(client, session, total_keys):
+def test_session_tasks_all_changed(client, session, total_keys):
     tasks = client.session_tasks('test3.yml', session, None, 'CHANGED')
     assert isinstance(tasks, list)
     assert len(tasks) == 1
@@ -138,7 +138,7 @@ def test_session_tasks_all_ok(client, session, total_keys):
         assert task['status'] == 'OK'
 
 @vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/tasks_localhost_changed.yml', record_mode='new_episodes')
-def test_session_tasks_all_ok(client, session, total_keys):
+def test_session_tasks_localhost_changed(client, session, total_keys):
     tasks = client.session_tasks('test3.yml', session, 'localhost', 'CHANGED')
     assert isinstance(tasks, list)
     assert len(tasks) == 1
@@ -149,7 +149,7 @@ def test_session_tasks_all_ok(client, session, total_keys):
         assert task['status'] == 'OK'
 
 @vcr.use_cassette('tests/vcr_cassettes/c8846a16-0c82-11e8-a65f-c48e8ff31cf7/tasks_127_changed.yml', record_mode='new_episodes')
-def test_session_tasks_all_ok(client, session, total_keys):
+def test_session_tasks_127_changed(client, session, total_keys):
     tasks = client.session_tasks('test3.yml', session, '127.0.0.1', 'CHANGED')
     assert isinstance(tasks, list)
     assert len(tasks) == 1
