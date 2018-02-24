@@ -22,15 +22,6 @@ def test_sessions(app):
     assert b'a5cba87a-0a0e-11e8-b454-c48e8ff31cf7' in rv.data
     assert b'test3.yml' in rv.data
     assert b'<a href="/sessions/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7">a5cba87a-0a0e-11e8-b454-c48e8ff31cf7</a>' in rv.data
-    assert b"""    <td><a href="/sessions/test3.yml/a5cba87a-0a0e-11e8-b454-c48e8ff31cf7">a5cba87a-0a0e-11e8-b454-c48e8ff31cf7</a></td>
-        <td>2018-02-05T00:51:09.877Z</td>
-        <td>test3.yml</td>
-        <td>10</td>
-        <td>2</td>
-        <td>0</td>
-        <td>2</td>
-        <td>0</td>
-    </tr>""" in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7.yml', record_mode='new_episodes')
 def test_session_tasks_all(app):

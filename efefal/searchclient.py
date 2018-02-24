@@ -12,6 +12,10 @@ class SearchClient():
         hits = sorted(hits, key=lambda d : d['@timestamp'])
         return hits
 
+    def reverse_timestamp_sort(self, hits):
+        hits = sorted(hits, key=lambda d : d['@timestamp'], reverse=True)
+        return hits
+
     def calculate_totals(self, result):
         """Takes a 'finish' as a param and provides totals"""
         totals = {
@@ -59,7 +63,7 @@ class SearchClient():
         """get list of all sessions for a single playook"""
         s = Search(using=self.client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
         s = [hit.to_dict() for hit in s]
-        s = self.timestamp_sort(s)
+        s = self.reverse_timestamp_sort(s)
         return s
 
     def session_tasks(self, playbook, session, host=None, status=None):

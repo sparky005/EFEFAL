@@ -33,8 +33,8 @@ def test_sessions(client, session, total_keys):
     sessions = client.playbook_sessions('test3.yml')
     assert isinstance(sessions, list)
     assert len(sessions) == 2
-    assert sessions[1]['session'] == session
-    assert sessions[0]['@timestamp'] == '2018-02-05T00:51:09.877Z'
+    assert sessions[0]['session'] == session
+    assert sessions[0]['@timestamp'] == '2018-02-08T03:47:34.369Z'
     assert sessions[0]['ansible_playbook'] == 'test3.yml'
 
 @vcr.use_cassette('tests/vcr_cassettes/test3.yml', record_mode='new_episodes')
