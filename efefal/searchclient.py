@@ -100,6 +100,10 @@ class SearchClient():
         tasks = [task.to_dict() for task in tasks]
         tasks = self.remove_tasklist_duplicates(tasks)
         tasks = self.timestamp_sort(tasks)
+        for task in tasks:
+            space = task['ansible_task'].find(' ')
+            task['ansible_task'] = task['ansible_task'][space:]
+            print(task['ansible_task'])
         return tasks
 
     def session_finish(self, playbook, session):

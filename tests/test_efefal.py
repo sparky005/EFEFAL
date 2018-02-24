@@ -28,13 +28,13 @@ def test_session_tasks_all(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7')
     hosts = [b'127.0.0.1', b'localhost']
     tasks = [
-                b'TASK: Gathering Facts',
-                b'TASK: say hi',
-                b'TASK: say hi 2',
-                b'TASK: say hi 3',
-                b'TASK: say hi 4',
-                b'TASK: fail',
-                b'TASK: change something'
+                b'Gathering Facts',
+                b'say hi',
+                b'say hi 2',
+                b'say hi 3',
+                b'say hi 4',
+                b'fail',
+                b'change something'
             ]
     assert b'Host' in rv.data
     assert b'Ok' in rv.data
@@ -54,13 +54,13 @@ def test_session_tasks_localhost(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=localhost')
     hosts = [b'localhost']
     tasks = [
-                b'TASK: Gathering Facts',
-                b'TASK: say hi',
-                b'TASK: say hi 2',
-                b'TASK: say hi 3',
-                b'TASK: say hi 4',
-                b'TASK: fail',
-                b'TASK: change something'
+                b'Gathering Facts',
+                b'say hi',
+                b'say hi 2',
+                b'say hi 3',
+                b'say hi 4',
+                b'fail',
+                b'change something'
             ]
     assert b'Host' in rv.data
     assert b'Ok' in rv.data
@@ -82,13 +82,13 @@ def test_session_tasks_127(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=127.0.0.1')
     hosts = [b'127.0.0.1']
     tasks = [
-                b'TASK: Gathering Facts',
-                b'TASK: say hi',
-                b'TASK: say hi 2',
-                b'TASK: say hi 3',
-                b'TASK: say hi 4',
-                b'TASK: fail',
-                b'TASK: change something'
+                b'Gathering Facts',
+                b'say hi',
+                b'say hi 2',
+                b'say hi 3',
+                b'say hi 4',
+                b'fail',
+                b'change something'
             ]
     assert b'Host' in rv.data
     assert b'Ok' in rv.data
@@ -109,13 +109,13 @@ def test_session_tasks_127_failed(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=127.0.0.1&status=FAILED')
     hosts = [b'127.0.0.1']
     tasks = [
-                b'TASK: Gathering Facts',
-                b'TASK: say hi',
-                b'TASK: say hi 2',
-                b'TASK: say hi 3',
-                b'TASK: say hi 4',
-                b'TASK: fail',
-                b'TASK: change something'
+                b'Gathering Facts',
+                b'say hi',
+                b'say hi 2',
+                b'say hi 3',
+                b'say hi 4',
+                b'fail',
+                b'change something'
             ]
     assert b'Host' in rv.data
     assert b'Ok' in rv.data
@@ -135,13 +135,13 @@ def test_session_tasks_127_ok(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=127.0.0.1&status=OK')
     hosts = [b'127.0.0.1']
     tasks = [
-                b'TASK: Gathering Facts',
-                b'TASK: say hi',
-                b'TASK: say hi 2',
-                b'TASK: say hi 3',
-                b'TASK: say hi 4',
-                b'TASK: fail',
-                b'TASK: change something'
+                b'Gathering Facts',
+                b'say hi',
+                b'say hi 2',
+                b'say hi 3',
+                b'say hi 4',
+                b'fail',
+                b'change something'
             ]
     assert b'Host' in rv.data
     assert b'Ok' in rv.data
@@ -162,15 +162,15 @@ def test_session_tasks_localhost_failed(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=localhost&status=FAILED')
     hosts = [b'localhost']
     excluded_tasks = [
-                b'TASK: Gathering Facts',
-                b'TASK: say hi',
-                b'TASK: say hi 2',
-                b'TASK: say hi 3',
-                b'TASK: say hi 4',
-                b'TASK: change something'
+                b'Gathering Facts',
+                b'say hi',
+                b'say hi 2',
+                b'say hi 3',
+                b'say hi 4',
+                b'change something'
             ]
     included_tasks = [
-                b'TASK: fail',
+                b'fail',
             ]
     assert b'Host' in rv.data
     assert b'Ok' in rv.data
@@ -193,15 +193,15 @@ def test_session_tasks_localhost_ok(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?host=localhost&status=OK')
     hosts = [b'localhost']
     included_tasks = [
-                b'TASK: Gathering Facts',
-                b'TASK: say hi',
-                b'TASK: say hi 2',
-                b'TASK: say hi 3',
-                b'TASK: say hi 4',
-                b'TASK: change something'
+                b'Gathering Facts',
+                b'say hi',
+                b'say hi 2',
+                b'say hi 3',
+                b'say hi 4',
+                b'change something'
             ]
     excluded_tasks = [
-                b'TASK: fail',
+                b'fail',
             ]
     assert b'Host' in rv.data
     assert b'Ok' in rv.data
@@ -224,13 +224,13 @@ def test_session_tasks_all_ok(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?status=OK')
     hosts = [b'localhost', b'127.0.0.1']
     included_tasks = [
-                b'TASK: Gathering Facts',
-                b'TASK: say hi',
-                b'TASK: say hi 2',
-                b'TASK: say hi 3',
-                b'TASK: say hi 4',
-                b'TASK: fail',
-                b'TASK: change something'
+                b'Gathering Facts',
+                b'say hi',
+                b'say hi 2',
+                b'say hi 3',
+                b'say hi 4',
+                b'fail',
+                b'change something'
             ]
     assert b'Host' in rv.data
     assert b'Ok' in rv.data
@@ -251,15 +251,15 @@ def test_session_tasks_all_failed(app):
     rv = app.get('sessions/test3.yml/c8846a16-0c82-11e8-a65f-c48e8ff31cf7?status=FAILED')
     hosts = [b'localhost', b'127.0.0.1']
     excluded_tasks = [
-                b'TASK: Gathering Facts',
-                b'TASK: say hi',
-                b'TASK: say hi 2',
-                b'TASK: say hi 3',
-                b'TASK: say hi 4',
-                b'TASK: change something'
+                b'Gathering Facts',
+                b'say hi',
+                b'say hi 2',
+                b'say hi 3',
+                b'say hi 4',
+                b'change something'
             ]
     included_tasks = [
-                b'TASK: fail',
+                b'fail',
             ]
     assert b'Host' in rv.data
     assert b'Ok' in rv.data
