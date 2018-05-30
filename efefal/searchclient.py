@@ -101,6 +101,7 @@ class SearchClient():
         tasks = self.remove_tasklist_duplicates(tasks)
         tasks = self.timestamp_sort(tasks)
         for task in tasks:
+            # remove word TASK: from the beginning of each task
             space = task['ansible_task'].find(' ')
             task['ansible_task'] = task['ansible_task'][space:]
             print(task['ansible_task'])
