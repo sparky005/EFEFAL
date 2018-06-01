@@ -1,6 +1,7 @@
 <!doctype html>
+{% extends 'base.html' %}
 <title>Playbook index</title>
-{% block body %}
+{% block content %}
 <ul>
     {% for playbook in list_of_playbooks %}
     <li><a href="{{ url_for('efefal.sessions', playbook=playbook) }}"> {{ playbook }}</li>

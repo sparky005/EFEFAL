@@ -1,8 +1,14 @@
 import vcr
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/index.yml', record_mode='new_episodes')
-def test_playbook_index(app):
+def test_index(app):
     rv = app.get('/')
+    assert b'By Playbook' in rv.data
+    assert b'<a href="/playbooks">By Playbook</a>' in rv.data
+
+@vcr.use_cassette('tests/vcr_cassettes/pages/playbook_index.yml', record_mode='new_episodes')
+def test_playbook_index(app):
+    rv = app.get('/playbooks')
     assert b'test.yml' in rv.data
     assert b'test2.yml' in rv.data
     assert b'test3.yml' in rv.data

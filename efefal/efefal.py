@@ -3,19 +3,36 @@ from flask import Flask
 from flask import render_template
 from flask import Blueprint
 from flask import request
+from flask_bootstrap import Bootstrap
+from flask_nav import Nav
+from flask_nav.elements import *
 from efefal.searchclient import SearchClient
 
 bp = Blueprint('efefal', __name__)
+
+# top menubar
+nav = Nav()
+nav.register_element('top', Navbar(
+    View('Home', '.index'),
+    View('Playbooks', '.playbook_index'),
+    )
+)
 
 
 def create_app(config=None):
     app = Flask(__name__)
     app.config.from_object(__name__)
     app.config.update(config or {})
+    nav.init_app(app)
     app.register_blueprint(bp)
+    Bootstrap(app)
     return app
 
 @bp.route('/')
+def index():
+    return render_template('index.html')
+
+@bp.route('/playbooks')
 def playbook_index():
     list_of_playbooks = client.playbook_index()
     return render_template('playbooks.html', list_of_playbooks=list_of_playbooks)
@@ -46,4 +63,3 @@ def session_tasks(playbook, session):
                             total=total)
 app = create_app()
 client = SearchClient()
-
