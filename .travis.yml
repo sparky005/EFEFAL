@@ -4,6 +4,6 @@ python:
 - '3.5'
 - '3.4'
 install:
-- pip install vcrpy python-coveralls pytest-cov flask elasticsearch-dsl
+- pip install vcrpy python-coveralls pytest-cov flask elasticsearch-dsl flask_bootstrap flask-nav
 script: pytest -v --cov . --cov-report term-missing
 after_success: coveralls
