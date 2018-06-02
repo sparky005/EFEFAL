@@ -1,4 +1,4 @@
-.navbar-default {
+.navbar-default, .my-primary {
   background-color: #ef86c8;
   border-color: #da219f;
 }
@@ -53,6 +53,9 @@
 }
 body {
     background-color: #f4d5eb;
+}
+.top-buffer {
+    margin-top:20px;
 }
 
 @media (max-width: 767px) {

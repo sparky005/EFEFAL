@@ -3,10 +3,13 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-1">
-            <h3 class="text-center"><a href="{{ url_for('efefal.playbook_index') }}">By Playbook</a></h3>
-            <h3 class="text-center">By Device <small>Not yet implemented</small></h3>
-            <h3 class="text-center">By Session<small>Not yet implemented</small></h3>
+        <div class="col-lg-1 text-center">
+            <div class="top-buffer">
+            <a href="{{ url_for('efefal.playbook_index') }}" class="btn my-primary"><h3>By Playbook</h3></a>
+            <div class="top-buffer">
+            <a href="#link" class="btn my-primary"><h3>By Device <small>Not yet implemented</small></h3></a>
+            <div class="top-buffer">
+            <a href="#link" class="btn my-primary"><h3>By Session <small>Not yet implemented</small></h3></a>
         </div>
     </div>
 </div>
