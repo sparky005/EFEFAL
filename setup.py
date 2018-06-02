@@ -1,6 +1,6 @@
 from setuptools import setup
 
-install_requires = ["flask", "elasticsearch-dsl"]
+install_requires = ["flask", "flask-nav", "flask_bootstrap", "elasticsearch-dsl"]
 
 setup(
         name="EFEFAL",
