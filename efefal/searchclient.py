@@ -104,7 +104,6 @@ class SearchClient():
             # remove word TASK: from the beginning of each task
             space = task['ansible_task'].find(' ')
             task['ansible_task'] = task['ansible_task'][space:]
-            print(task['ansible_task'])
         return tasks
 
     def session_finish(self, playbook, session):
