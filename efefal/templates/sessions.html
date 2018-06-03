@@ -2,28 +2,34 @@
 {% extends 'base.html' %}
 <title>Playbook runs for {{ playbook }} index</title>
 {% block content %}
-<table>
-    <tr>
-        <th>SessionID</th>
-        <th>Timestamp</th>
-        <th>Playbook</th>
-        <th>Ok</th>
-        <th>Failed</th>
-        <th>Unreachable</th>
-        <th>Changed</th>
-        <th>Skipped</th>
-    </tr>
-    {% for session, total in sessions %}
-    <tr>
-    <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session.session) }}">{{ session['session'] }}</a></td>
-        <td>{{ session['@timestamp'] }}</td>
-        <td>{{ session.ansible_playbook }}</td>
-        <td>{{ total.OK }}</td>
-        <td>{{ total.FAILED}}</td>
-        <td>{{ total.UNREACHABLE }}</td>
-        <td>{{ total.CHANGED }}</td>
-        <td>{{ total.SKIPPED }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="container">
+    <div class="row">
+        <div class="cold-lg-12">
+            <table class="table table-hover">
+                <tr>
+                    <th>SessionID</th>
+                    <th>Timestamp</th>
+                    <th>Playbook</th>
+                    <th>Ok</th>
+                    <th>Failed</th>
+                    <th>Unreachable</th>
+                    <th>Changed</th>
+                    <th>Skipped</th>
+                </tr>
+                {% for session, total in sessions %}
+                <tr>
+                    <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session.session) }}">{{ session['session'] }}</a></td>
+                    <td>{{ session['@timestamp'] }}</td>
+                    <td>{{ session.ansible_playbook }}</td>
+                    <td>{{ total.OK }}</td>
+                    <td>{{ total.FAILED}}</td>
+                    <td>{{ total.UNREACHABLE }}</td>
+                    <td>{{ total.CHANGED }}</td>
+                    <td>{{ total.SKIPPED }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
