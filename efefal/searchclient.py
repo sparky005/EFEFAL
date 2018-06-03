@@ -1,5 +1,6 @@
 import json
 import itertools
+from datetime import datetime
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 
@@ -7,6 +8,15 @@ class SearchClient():
 
     def __init__(self):
         self.client = Elasticsearch()
+
+    def timestamp_to_dt(self, timestamp):
+        """
+        converts weird timestamps into workable dt objects
+        """
+        # drop milliseconds
+        ix = timestamp.find('.')
+        d = datetime.strptime(timestamp[:ix], '%Y-%m-%dT%H:%M:%S')
+        return d
 
     def timestamp_sort(self, hits):
         hits = sorted(hits, key=lambda d : d['@timestamp'])
@@ -46,7 +56,7 @@ class SearchClient():
     def playbook_index(self):
         s = Search(using=self.client).query("match", type='ansible')
         s = [x.to_dict() for x in s]
-        s = self.timestamp_sort(s)
+        s = self.reverse_timestamp_sort(s)
         # TIL that sets don't actually retain order
         list_of_playbooks = set([hit['ansible_playbook'] for hit in s])
         return list_of_playbooks
@@ -63,6 +73,8 @@ class SearchClient():
         """get list of all sessions for a single playook"""
         s = Search(using=self.client).query("match_phrase", ansible_playbook=playbook).filter("term", ansible_type="finish")
         s = [hit.to_dict() for hit in s]
+        for hit in s:
+            hit['@timestamp'] = self.timestamp_to_dt(hit['@timestamp'])
         s = self.reverse_timestamp_sort(s)
         return s
 
@@ -104,6 +116,7 @@ class SearchClient():
             # remove word TASK: from the beginning of each task
             space = task['ansible_task'].find(' ')
             task['ansible_task'] = task['ansible_task'][space:]
+            task['@timestamp'] = self.timestamp_to_dt(task['@timestamp'])
         return tasks
 
     def session_finish(self, playbook, session):
