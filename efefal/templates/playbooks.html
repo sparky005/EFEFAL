@@ -2,8 +2,15 @@
 {% extends 'base.html' %}
 <title>Playbook index</title>
 {% block content %}
-<ul>
-    {% for playbook in list_of_playbooks %}
-    <li><a href="{{ url_for('efefal.sessions', playbook=playbook) }}"> {{ playbook }}</li>
-    {% endfor %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            {% for playbook in list_of_playbooks %}
+            <!-- TODO: display some information about these playbook runs here
+                eg runtime, number of hosts, summary stats -->
+                <p><a href="{{ url_for('efefal.sessions', playbook=playbook) }}"> {{ playbook }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
