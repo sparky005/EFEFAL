@@ -13,7 +13,7 @@ def test_playbook_index(app):
     assert b'test.yml' in rv.data
     assert b'test2.yml' in rv.data
     assert b'test3.yml' in rv.data
-    assert b'<li><a href="/sessions/test2.yml"> test2.yml</li>' in rv.data
+    assert b'<a href="/sessions/test2.yml"> test2.yml' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/test3.yml', record_mode='new_episodes')
 def test_sessions(app):
