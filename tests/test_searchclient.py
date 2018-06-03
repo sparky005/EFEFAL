@@ -1,4 +1,5 @@
 import json
+import datetime
 import pytest
 import vcr
 
@@ -34,7 +35,7 @@ def test_sessions(client, session, total_keys):
     assert isinstance(sessions, list)
     assert len(sessions) == 2
     assert sessions[0]['session'] == session
-    assert sessions[0]['@timestamp'] == '2018-02-08T03:47:34.369Z'
+    assert isinstance(sessions[0]['@timestamp'], datetime.datetime)
     assert sessions[0]['ansible_playbook'] == 'test3.yml'
 
 @vcr.use_cassette('tests/vcr_cassettes/test3.yml', record_mode='new_episodes')
