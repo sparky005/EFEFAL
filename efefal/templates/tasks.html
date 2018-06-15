@@ -32,19 +32,35 @@
             </table>
 
             <h2>Tasks</h2>
+            <h4><small><em>Click on a host for more information</em></small></h4>
             <table class="table table-hover">
+                {% if request.args.get('host') %}
                 <tr>
                     <th>Timestamp</th>
+                    <th>Host</th>
                     <th>Task</th>
                     <th>Status</th>
                 </tr>
                 {% for task in tasks %}
                 <tr>
                     <td>{{ task['@timestamp'] }}</td>
+                    <td>{{ task['ansible_host'] }}</td>
                     <td>{{ task['ansible_task'] }}</td>
                     <td>{{ task['status'] }}</td>
                 </tr>
                 {% endfor %}
+                {% else %}
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Task</th>
+                </tr>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task['@timestamp'] }}</td>
+                    <td>{{ task['ansible_task'] }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
             </table>
         </div>
     </div>

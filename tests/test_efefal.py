@@ -55,6 +55,7 @@ def test_session_tasks_all(app):
         assert host in rv.data
     for task in tasks:
         assert task in rv.data
+    assert b'Status' not in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost.yml', record_mode='new_episodes')
 def test_session_tasks_localhost(app):
@@ -83,6 +84,7 @@ def test_session_tasks_localhost(app):
         assert task in rv.data
     assert b'FAILED' in rv.data
     assert b'OK' in rv.data
+    assert b'Status' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1.yml', record_mode='new_episodes')
 def test_session_tasks_127(app):
@@ -110,6 +112,7 @@ def test_session_tasks_127(app):
     for task in tasks:
         assert task in rv.data
     assert b'OK' in rv.data
+    assert b'Status' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1_failed.yml', record_mode='new_episodes')
 def test_session_tasks_127_failed(app):
@@ -136,6 +139,7 @@ def test_session_tasks_127_failed(app):
         assert host in rv.data
     for task in tasks:
         assert task not in rv.data, "No failed tasks should appear for 127"
+    assert b'Status' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_127.0.0.1_ok.yml', record_mode='new_episodes')
 def test_session_tasks_127_ok(app):
@@ -163,6 +167,7 @@ def test_session_tasks_127_ok(app):
     for task in tasks:
         assert task in rv.data, "All tasks should appear for 127"
     assert b'OK' in rv.data
+    assert b'Status' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost_failed.yml', record_mode='new_episodes')
 def test_session_tasks_localhost_failed(app):
@@ -194,6 +199,7 @@ def test_session_tasks_localhost_failed(app):
     for task in excluded_tasks:
         assert task not in rv.data
     assert b'FAILED' in rv.data
+    assert b'Status' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_localhost_ok.yml', record_mode='new_episodes')
 def test_session_tasks_localhost_ok(app):
@@ -225,6 +231,7 @@ def test_session_tasks_localhost_ok(app):
     for task in excluded_tasks:
         assert task not in rv.data
     assert b'OK' in rv.data
+    assert b'Status' in rv.data
 
 @vcr.use_cassette('tests/vcr_cassettes/pages/c8846a16-0c82-11e8-a65f-c48e8ff31cf7_all_ok.yml', record_mode='new_episodes')
 def test_session_tasks_all_ok(app):
