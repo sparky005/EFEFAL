@@ -110,7 +110,10 @@ class SearchClient():
                                     .filter("term", ansible_type="task")
         tasks = s.scan()
         tasks = [task.to_dict() for task in tasks]
-        tasks = self.remove_tasklist_duplicates(tasks)
+        # make sure we don't remove duplicates
+        # when we actually care about all the tasks
+        if not status:
+            tasks = self.remove_tasklist_duplicates(tasks)
         tasks = self.timestamp_sort(tasks)
         for task in tasks:
             # remove word TASK: from the beginning of each task

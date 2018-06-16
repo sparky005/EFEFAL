@@ -34,7 +34,7 @@
             <h2>Tasks</h2>
             <h4><small><em>Click on a host for more information</em></small></h4>
             <table class="table table-hover">
-                {% if request.args.get('host') %}
+                {% if request.args.get('host') or request.args.get('status') %}
                 <tr>
                     <th>Timestamp</th>
                     <th>Host</th>

@@ -120,7 +120,7 @@ def test_session_tasks_localhost_ok(client, session, total_keys):
 def test_session_tasks_all_ok(client, session, total_keys):
     tasks = client.session_tasks('test3.yml', session, None, 'OK')
     assert isinstance(tasks, list)
-    assert len(tasks) == 7
+    assert len(tasks) == 13
     for task in tasks:
         assert task['ansible_type'] == 'task'
         assert task['session'] == session
@@ -131,7 +131,7 @@ def test_session_tasks_all_ok(client, session, total_keys):
 def test_session_tasks_all_changed(client, session, total_keys):
     tasks = client.session_tasks('test3.yml', session, None, 'CHANGED')
     assert isinstance(tasks, list)
-    assert len(tasks) == 1
+    assert len(tasks) == 2
     for task in tasks:
         assert task['ansible_type'] == 'task'
         assert task['session'] == session
