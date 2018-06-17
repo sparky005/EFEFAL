@@ -7,14 +7,16 @@
         <div class="col-lg-12">
             <h1 class="text-center">{{ playbook }}</h1>
             <h2>Session Summary</h2>
-            <table class="table table-hover">
-                <tr>
-                    <th>Host</th>
-                    <th>Ok</th>
-                    <th>Failures</th>
-                    <th>Unreachable</th>
-                    <th>Changed</th>
-                    <th>Skipped</th>
+            <h4><small><em>All columns now sort! Click on the header</em></small></h4>
+            <table data-toggle="table" data-pagination="true" class="table table-hover">
+                <thead>
+                    <th data-sortable="true">Host</th>
+                    <th data-sortable="true">Ok</th>
+                    <th data-sortable="true">Failures</th>
+                    <th data-sortable="true">Unreachable</th>
+                    <th data-sortable="true">Changed</th>
+                    <th data-sortable="true">Skipped</th>
+                </thead>
                     {% for host, results in finish.items() %}
                     <tr>
                         <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session, host=host) }}">{{ host }}</a></td>
@@ -24,7 +26,7 @@
                     </tr>
                     {% endfor %}
                     <tr>
-                        <td>Total</td>
+                        <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session) }}">Total</a></td>
                         {% for key, value in total.items() %}
                         <td><a href="{{ url_for('efefal.session_tasks', playbook=playbook, session=session, status=key) }}">{{ value }}</a></td>
                         {% endfor %}
@@ -33,14 +35,14 @@
 
             <h2>Tasks</h2>
             <h4><small><em>Click on a host for more information</em></small></h4>
-            <table class="table table-hover">
+            <table data-search="true" data-toggle="table" data-pagination="true" class="table table-hover">
                 {% if request.args.get('host') or request.args.get('status') %}
-                <tr>
-                    <th>Timestamp</th>
-                    <th>Host</th>
-                    <th>Task</th>
-                    <th>Status</th>
-                </tr>
+                <thead>
+                    <th data-sortable="true">Timestamp</th>
+                    <th data-sortable="true">Host</th>
+                    <th data-sortable="true">Task</th>
+                    <th data-sortable="true">Status</th>
+                </thead>
                 {% for task in tasks %}
                 <tr>
                     <td>{{ task['@timestamp'] }}</td>
@@ -50,10 +52,10 @@
                 </tr>
                 {% endfor %}
                 {% else %}
-                <tr>
-                    <th>Timestamp</th>
-                    <th>Task</th>
-                </tr>
+                <thead>
+                    <th data-sortable="true">Timestamp</th>
+                    <th data-sortable="true">Task</th>
+                </thead>
                 {% for task in tasks %}
                 <tr>
                     <td>{{ task['@timestamp'] }}</td>
