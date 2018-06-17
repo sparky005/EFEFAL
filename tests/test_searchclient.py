@@ -206,3 +206,11 @@ def test_totals_one_host(client, session):
     assert totals['OK'] == 6
     assert totals['CHANGED'] == 1
     assert totals['FAILED'] == 0
+
+@vcr.use_cassette('tests/vcr_cassettes/get_all_hosts.yml', record_mode='new_episodes')
+def test_get_all_hosts(client):
+    # TODO: limit this to 24 hours
+    hosts = client.get_all_hosts()
+    assert len(hosts) == 2
+    assert 'localhost' in hosts
+    assert '127.0.0.1' in hosts
