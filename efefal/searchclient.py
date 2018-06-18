@@ -138,10 +138,14 @@ class SearchClient():
                 finish[host][key] = finish[host].pop(key)
         return finish
 
-    def get_all_hosts(self):
-        """Get all hosts in database"""
-        # TODO: limit this to 24 hours
-        s = Search(using=self.client).query("match", type='ansible')
+    def get_all_hosts(self, timeframe=7):
+        """
+        Get all hosts in database
+        timeframe = timeframe to search in days
+        """
+        s = Search(using=self.client) \
+            .query("range", ** {'@timestamp': {'lt': 'now', 'gt': 'now-{}d'.format(timeframe)}}) \
+            .query("match", type='ansible')
         s = [hit.to_dict() for hit in s]
         hosts = [hit['ansible_host'] for hit in s]
         return set(hosts)
