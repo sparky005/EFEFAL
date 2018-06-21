@@ -288,3 +288,10 @@ def test_session_tasks_all_failed(app):
     for task in included_tasks:
         assert task in rv.data
     assert b'FAILED' in rv.data
+
+@vcr.use_cassette('tests/vcr_cassettes/pages/devices.yml', record_mode='new_episodes')
+def test_devices(app):
+    rv = app.get('devices')
+    assert b'Devices' in rv.data
+    assert b'localhost' in rv.data
+    assert b'127.0.0.1' in rv.data

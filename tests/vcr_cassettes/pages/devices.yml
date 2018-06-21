@@ -1,0 +1,297 @@
+interactions:
+- request:
+    body: '{"query":{"bool":{"must":[{"range":{"@timestamp":{"lt":"now","gt":"now-1000d"}}},{"match":{"type":"ansible"}}]}}}'
+    headers:
+      connection: [keep-alive]
+      content-type: [application/json]
+    method: GET
+    uri: http://localhost:9200/_search
+  response:
+    body: {string: '{"took":4,"timed_out":false,"_shards":{"total":6,"successful":6,"skipped":0,"failed":0},"hits":{"total":76,"max_score":1.0425596,"hits":[{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"iPpwY2EBDN-WjKyhdbcm","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test2.yml","stack_info":null,"session":"67b22992-0a0e-11e8-b231-c48e8ff31cf7","port":33828,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"changed\":
+        false, \"ping\": \"hi\"}","message":"ansible ok","@timestamp":"2018-02-05T00:49:24.595Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"localhost","ansible_task":"TASK:
+        say hi"}},{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"l_pxY2EBDN-WjKyh0rfe","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test2.yml","stack_info":null,"session":"9eaf385e-0a0e-11e8-95ad-c48e8ff31cf7","port":33874,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"changed\":
+        false, \"ping\": \"hi\"}","message":"ansible ok","@timestamp":"2018-02-05T00:50:56.270Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"127.0.0.1","ansible_task":"TASK:
+        say hi"}},{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"ofpxY2EBDN-WjKyh6reN","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test.yml","stack_info":null,"session":"a250d8a0-0a0e-11e8-a272-c48e8ff31cf7","port":33880,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"changed\":
+        false, \"ping\": \"hi\"}","message":"ansible ok","@timestamp":"2018-02-05T00:51:02.426Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"127.0.0.1","ansible_task":"TASK:
+        say hi"}},{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"pfpxY2EBDN-WjKyh6reZ","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test.yml","stack_info":null,"session":"a250d8a0-0a0e-11e8-a272-c48e8ff31cf7","port":33880,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"changed\":
+        false, \"ping\": \"hi\"}","message":"ansible ok","@timestamp":"2018-02-05T00:51:01.891Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"127.0.0.1","ansible_task":"TASK:
+        say hi"}},{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"sfpyY2EBDN-WjKyhAbdM","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"ansible_facts\":
+        {\"ansible_all_ipv4_addresses\": [\"172.31.98.226\", \"172.17.0.1\"], \"ansible_all_ipv6_addresses\":
+        [\"fe80::8a7e:ee36:6fd2:719c\", \"fe80::42:58ff:fef6:2436\", \"fe80::5838:6bff:fe95:ca39\"],
+        \"ansible_apparmor\": {\"status\": \"disabled\"}, \"ansible_architecture\":
+        \"x86_64\", \"ansible_bios_date\": \"08/29/2016\", \"ansible_bios_version\":
+        \"A09\", \"ansible_cmdline\": {\"BOOT_IMAGE\": \"/vmlinuz-linux\", \"cryptdevice\":
+        \"/dev/disk/by-uuid/cad57082-afc2-45c6-af1d-f1a2de567b4f:cryptAntergos\",
+        \"pcie_aspm\": \"force\", \"quiet\": true, \"resume\": \"UUID=817afaf1-2b2c-48f2-9fd8-ee020c77a850\",
+        \"root\": \"UUID=f41e7144-bd76-4447-83de-bdabcd7b2009\", \"rw\": true}, \"ansible_date_time\":
+        {\"date\": \"2018-02-04\", \"day\": \"04\", \"epoch\": \"1517791866\", \"hour\":
+        \"19\", \"iso8601\": \"2018-02-05T00:51:06Z\", \"iso8601_basic\": \"20180204T195106976418\",
+        \"iso8601_basic_short\": \"20180204T195106\", \"iso8601_micro\": \"2018-02-05T00:51:06.976678Z\",
+        \"minute\": \"51\", \"month\": \"02\", \"second\": \"06\", \"time\": \"19:51:06\",
+        \"tz\": \"EST\", \"tz_offset\": \"-0500\", \"weekday\": \"Sunday\", \"weekday_number\":
+        \"0\", \"weeknumber\": \"05\", \"year\": \"2018\"}, \"ansible_default_ipv4\":
+        {\"address\": \"172.31.98.226\", \"alias\": \"wlp2s0\", \"broadcast\": \"172.31.99.255\",
+        \"gateway\": \"172.31.98.1\", \"interface\": \"wlp2s0\", \"macaddress\": \"c4:8e:8f:f3:1c:f7\",
+        \"mtu\": 1500, \"netmask\": \"255.255.254.0\", \"network\": \"172.31.98.0\",
+        \"type\": \"ether\"}, \"ansible_default_ipv6\": {}, \"ansible_device_links\":
+        {\"ids\": {\"dm-0\": [\"dm-name-cryptAntergos\", \"dm-uuid-CRYPT-LUKS1-cad57082afc245c6af1df1a2de567b4f-cryptAntergos\"],
+        \"sda\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426\", \"wwn-0x5002538844584d30\"],
+        \"sda1\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426-part1\",
+        \"wwn-0x5002538844584d30-part1\"], \"sda2\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426-part2\",
+        \"wwn-0x5002538844584d30-part2\"], \"sda3\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426-part3\",
+        \"wwn-0x5002538844584d30-part3\"], \"sda4\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426-part4\",
+        \"wwn-0x5002538844584d30-part4\"]}, \"labels\": {\"dm-0\": [\"AntergosRoot\"],
+        \"sda1\": [\"UEFI_SYSTEM\"], \"sda2\": [\"AntergosBoot\"], \"sda4\": [\"AntergosSwap\"]},
+        \"masters\": {\"sda3\": [\"dm-0\"]}, \"uuids\": {\"dm-0\": [\"f41e7144-bd76-4447-83de-bdabcd7b2009\"],
+        \"sda1\": [\"7A44-190E\"], \"sda2\": [\"9d1a5ef5-ff04-4bf0-a5b3-459f6ff26385\"],
+        \"sda3\": [\"cad57082-afc2-45c6-af1d-f1a2de567b4f\"], \"sda4\": [\"817afaf1-2b2c-48f2-9fd8-ee020c77a850\"]}},
+        \"ansible_devices\": {\"dm-0\": {\"holders\": [], \"host\": \"\", \"links\":
+        {\"ids\": [\"dm-name-cryptAntergos\", \"dm-uuid-CRYPT-LUKS1-cad57082afc245c6af1df1a2de567b4f-cryptAntergos\"],
+        \"labels\": [\"AntergosRoot\"], \"masters\": [], \"uuids\": [\"f41e7144-bd76-4447-83de-bdabcd7b2009\"]},
+        \"model\": null, \"partitions\": {}, \"removable\": \"0\", \"rotational\":
+        \"0\", \"sas_address\": null, \"sas_device_handle\": null, \"scheduler_mode\":
+        \"\", \"sectors\": \"483014656\", \"sectorsize\": \"512\", \"size\": \"230.32
+        GB\", \"support_discard\": \"512\", \"vendor\": null, \"virtual\": 1}, \"sda\":
+        {\"holders\": [], \"host\": \"SATA controller: Intel Corporation Wildcat Point-LP
+        SATA Controller [AHCI Mode] (rev 03)\", \"links\": {\"ids\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426\",
+        \"wwn-0x5002538844584d30\"], \"labels\": [], \"masters\": [], \"uuids\": []},
+        \"model\": \"SAMSUNG SSD PM85\", \"partitions\": {\"sda1\": {\"holders\":
+        [], \"links\": {\"ids\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426-part1\",
+        \"wwn-0x5002538844584d30-part1\"], \"labels\": [\"UEFI_SYSTEM\"], \"masters\":
+        [], \"uuids\": [\"7A44-190E\"]}, \"sectors\": \"409600\", \"sectorsize\":
+        512, \"size\": \"200.00 MB\", \"start\": \"2048\", \"uuid\": \"7A44-190E\"},
+        \"sda2\": {\"holders\": [], \"links\": {\"ids\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426-part2\",
+        \"wwn-0x5002538844584d30-part2\"], \"labels\": [\"AntergosBoot\"], \"masters\":
+        [], \"uuids\": [\"9d1a5ef5-ff04-4bf0-a5b3-459f6ff26385\"]}, \"sectors\": \"524288\",
+        \"sectorsize\": 512, \"size\": \"256.00 MB\", \"start\": \"411648\", \"uuid\":
+        \"9d1a5ef5-ff04-4bf0-a5b3-459f6ff26385\"}, \"sda3\": {\"holders\": [\"cryptAntergos\"],
+        \"links\": {\"ids\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426-part3\",
+        \"wwn-0x5002538844584d30-part3\"], \"labels\": [], \"masters\": [\"dm-0\"],
+        \"uuids\": [\"cad57082-afc2-45c6-af1d-f1a2de567b4f\"]}, \"sectors\": \"483018752\",
+        \"sectorsize\": 512, \"size\": \"230.32 GB\", \"start\": \"935936\", \"uuid\":
+        \"cad57082-afc2-45c6-af1d-f1a2de567b4f\"}, \"sda4\": {\"holders\": [], \"links\":
+        {\"ids\": [\"ata-SAMSUNG_SSD_PM851_M.2_2280_256GB_S1D3NEAG308426-part4\",
+        \"wwn-0x5002538844584d30-part4\"], \"labels\": [\"AntergosSwap\"], \"masters\":
+        [], \"uuids\": [\"817afaf1-2b2c-48f2-9fd8-ee020c77a850\"]}, \"sectors\": \"16163471\",
+        \"sectorsize\": 512, \"size\": \"7.71 GB\", \"start\": \"483954688\", \"uuid\":
+        \"817afaf1-2b2c-48f2-9fd8-ee020c77a850\"}}, \"removable\": \"0\", \"rotational\":
+        \"0\", \"sas_address\": null, \"sas_device_handle\": null, \"scheduler_mode\":
+        \"deadline\", \"sectors\": \"500118192\", \"sectorsize\": \"512\", \"size\":
+        \"238.47 GB\", \"support_discard\": \"512\", \"vendor\": \"ATA\", \"virtual\":
+        1, \"wwn\": \"0x5002538844584d30\"}}, \"ansible_distribution\": \"Archlinux\",
+        \"ansible_distribution_major_version\": \"NA\", \"ansible_distribution_release\":
+        \"NA\", \"ansible_distribution_version\": \"NA\", \"ansible_dns\": {\"nameservers\":
+        [\"8.8.8.8\", \"8.8.4.4\"]}, \"ansible_docker0\": {\"active\": true, \"device\":
+        \"docker0\", \"features\": {\"esp_hw_offload\": \"off [fixed]\", \"esp_tx_csum_hw_offload\":
+        \"off [fixed]\", \"fcoe_mtu\": \"off [fixed]\", \"generic_receive_offload\":
+        \"on\", \"generic_segmentation_offload\": \"on\", \"highdma\": \"on\", \"hw_tc_offload\":
+        \"off [fixed]\", \"l2_fwd_offload\": \"off [fixed]\", \"large_receive_offload\":
+        \"off [fixed]\", \"loopback\": \"off [fixed]\", \"netns_local\": \"on [fixed]\",
+        \"ntuple_filters\": \"off [fixed]\", \"receive_hashing\": \"off [fixed]\",
+        \"rx_all\": \"off [fixed]\", \"rx_checksumming\": \"off [fixed]\", \"rx_fcs\":
+        \"off [fixed]\", \"rx_udp_tunnel_port_offload\": \"off [fixed]\", \"rx_vlan_filter\":
+        \"off [fixed]\", \"rx_vlan_offload\": \"off [fixed]\", \"rx_vlan_stag_filter\":
+        \"off [fixed]\", \"rx_vlan_stag_hw_parse\": \"off [fixed]\", \"scatter_gather\":
+        \"on\", \"tcp_segmentation_offload\": \"on\", \"tx_checksum_fcoe_crc\": \"off
+        [fixed]\", \"tx_checksum_ip_generic\": \"on\", \"tx_checksum_ipv4\": \"off
+        [fixed]\", \"tx_checksum_ipv6\": \"off [fixed]\", \"tx_checksum_sctp\": \"off
+        [fixed]\", \"tx_checksumming\": \"on\", \"tx_esp_segmentation\": \"on\", \"tx_fcoe_segmentation\":
+        \"off [requested on]\", \"tx_gre_csum_segmentation\": \"on\", \"tx_gre_segmentation\":
+        \"on\", \"tx_gso_partial\": \"on\", \"tx_gso_robust\": \"off [requested on]\",
+        \"tx_ipxip4_segmentation\": \"on\", \"tx_ipxip6_segmentation\": \"on\", \"tx_lockless\":
+        \"on [fixed]\", \"tx_nocache_copy\": \"off\", \"tx_scatter_gather\": \"on\",
+        \"tx_scatter_gather_fraglist\": \"on\", \"tx_sctp_segmentation\": \"on\",
+        \"tx_tcp6_segmentation\": \"on\", \"tx_tcp_ecn_segmentation\": \"on\", \"tx_tcp_mangleid_segmentation\":
+        \"on\", \"tx_tcp_segmentation\": \"on\", \"tx_udp_tnl_csum_segmentation\":
+        \"on\", \"tx_udp_tnl_segmentation\": \"on\", \"tx_vlan_offload\": \"on\",
+        \"tx_vlan_stag_hw_insert\": \"on\", \"udp_fragmentation_offload\": \"off\",
+        \"vlan_challenged\": \"off [fixed]\"}, \"hw_timestamp_filters\": [], \"id\":
+        \"8000.024258f62436\", \"interfaces\": [\"vethfd91915\"], \"ipv4\": {\"address\":
+        \"172.17.0.1\", \"broadcast\": \"172.17.255.255\", \"netmask\": \"255.255.0.0\",
+        \"network\": \"172.17.0.0\"}, \"ipv6\": [{\"address\": \"fe80::42:58ff:fef6:2436\",
+        \"prefix\": \"64\", \"scope\": \"link\"}], \"macaddress\": \"02:42:58:f6:24:36\",
+        \"mtu\": 1500, \"promisc\": false, \"stp\": false, \"timestamping\": [\"rx_software\",
+        \"software\"], \"type\": \"bridge\"}, \"ansible_domain\": \"\", \"ansible_effective_group_id\":
+        100, \"ansible_effective_user_id\": 1000, \"ansible_env\": {\"BROWSER\": \"/usr/bin/chromium\",
+        \"COLORTERM\": \"truecolor\", \"DBUS_SESSION_BUS_ADDRESS\": \"unix:path=/run/user/1000/bus\",
+        \"DESKTOP_SESSION\": \"i3\", \"DISPLAY\": \":0\", \"EDITOR\": \"vim\", \"GDMSESSION\":
+        \"i3\", \"GDM_LANG\": \"en_US.UTF-8\", \"GTK_MODULES\": \"canberra-gtk-module\",
+        \"HOME\": \"/home/asadik\", \"LANG\": \"en_US.UTF-8\", \"LC_COLLATE\": \"en_US.UTF-8\",
+        \"LOGNAME\": \"asadik\", \"MAIL\": \"/var/spool/mail/asadik\", \"MOZ_PLUGIN_PATH\":
+        \"/usr/lib/mozilla/plugins\", \"OLDPWD\": \"/home/asadik/elk-mods\", \"PATH\":
+        \"/home/asadik/.npm-global/bin:/home/asadik/google-cloud-sdk/bin:/home/asadik/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/asadik/.gem/ruby/2.4.0/bin\",
+        \"PWD\": \"/home/asadik\", \"QT_QPA_PLATFORMTHEME\": \"qt5ct\", \"SHELL\":
+        \"/bin/bash\", \"SHLVL\": \"4\", \"TERM\": \"xterm-256color\", \"TERMINATOR_DBUS_NAME\":
+        \"net.tenshu.Terminator20x1a6021154d881c\", \"TERMINATOR_DBUS_PATH\": \"/net/tenshu/Terminator2\",
+        \"TERMINATOR_UUID\": \"urn:uuid:20ed8456-38c6-4f07-8846-141c79fea278\", \"USER\":
+        \"asadik\", \"VTE_VERSION\": \"5003\", \"XAUTHORITY\": \"/home/asadik/.Xauthority\",
+        \"XDG_CURRENT_DESKTOP\": \"i3\", \"XDG_GREETER_DATA_DIR\": \"/var/lib/lightdm-data/asadik\",
+        \"XDG_RUNTIME_DIR\": \"/run/user/1000\", \"XDG_SEAT\": \"seat0\", \"XDG_SEAT_PATH\":
+        \"/org/freedesktop/DisplayManager/Seat0\", \"XDG_SESSION_DESKTOP\": \"i3\",
+        \"XDG_SESSION_ID\": \"c2\", \"XDG_SESSION_PATH\": \"/org/freedesktop/DisplayManager/Session0\",
+        \"XDG_SESSION_TYPE\": \"x11\", \"XDG_VTNR\": \"7\", \"YAOURT_COLORS\": \"nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35\",
+        \"_\": \"/usr/bin/python\"}, \"ansible_fips\": false, \"ansible_form_factor\":
+        \"Laptop\", \"ansible_fqdn\": \"peterPanda-redux\", \"ansible_hostname\":
+        \"peterPanda-redux\", \"ansible_interfaces\": [\"wlp2s0\", \"vethfd91915\",
+        \"docker0\", \"lo\"], \"ansible_kernel\": \"4.14.15-1-ARCH\", \"ansible_lo\":
+        {\"active\": true, \"device\": \"lo\", \"features\": {\"esp_hw_offload\":
+        \"off [fixed]\", \"esp_tx_csum_hw_offload\": \"off [fixed]\", \"fcoe_mtu\":
+        \"off [fixed]\", \"generic_receive_offload\": \"on\", \"generic_segmentation_offload\":
+        \"on\", \"highdma\": \"on [fixed]\", \"hw_tc_offload\": \"off [fixed]\", \"l2_fwd_offload\":
+        \"off [fixed]\", \"large_receive_offload\": \"off [fixed]\", \"loopback\":
+        \"on [fixed]\", \"netns_local\": \"on [fixed]\", \"ntuple_filters\": \"off
+        [fixed]\", \"receive_hashing\": \"off [fixed]\", \"rx_all\": \"off [fixed]\",
+        \"rx_checksumming\": \"on [fixed]\", \"rx_fcs\": \"off [fixed]\", \"rx_udp_tunnel_port_offload\":
+        \"off [fixed]\", \"rx_vlan_filter\": \"off [fixed]\", \"rx_vlan_offload\":
+        \"off [fixed]\", \"rx_vlan_stag_filter\": \"off [fixed]\", \"rx_vlan_stag_hw_parse\":
+        \"off [fixed]\", \"scatter_gather\": \"on\", \"tcp_segmentation_offload\":
+        \"on\", \"tx_checksum_fcoe_crc\": \"off [fixed]\", \"tx_checksum_ip_generic\":
+        \"on [fixed]\", \"tx_checksum_ipv4\": \"off [fixed]\", \"tx_checksum_ipv6\":
+        \"off [fixed]\", \"tx_checksum_sctp\": \"on [fixed]\", \"tx_checksumming\":
+        \"on\", \"tx_esp_segmentation\": \"off [fixed]\", \"tx_fcoe_segmentation\":
+        \"off [fixed]\", \"tx_gre_csum_segmentation\": \"off [fixed]\", \"tx_gre_segmentation\":
+        \"off [fixed]\", \"tx_gso_partial\": \"off [fixed]\", \"tx_gso_robust\": \"off
+        [fixed]\", \"tx_ipxip4_segmentation\": \"off [fixed]\", \"tx_ipxip6_segmentation\":
+        \"off [fixed]\", \"tx_lockless\": \"on [fixed]\", \"tx_nocache_copy\": \"off
+        [fixed]\", \"tx_scatter_gather\": \"on [fixed]\", \"tx_scatter_gather_fraglist\":
+        \"on [fixed]\", \"tx_sctp_segmentation\": \"on\", \"tx_tcp6_segmentation\":
+        \"on\", \"tx_tcp_ecn_segmentation\": \"on\", \"tx_tcp_mangleid_segmentation\":
+        \"on\", \"tx_tcp_segmentation\": \"on\", \"tx_udp_tnl_csum_segmentation\":
+        \"off [fixed]\", \"tx_udp_tnl_segmentation\": \"off [fixed]\", \"tx_vlan_offload\":
+        \"off [fixed]\", \"tx_vlan_stag_hw_insert\": \"off [fixed]\", \"udp_fragmentation_offload\":
+        \"off\", \"vlan_challenged\": \"on [fixed]\"}, \"hw_timestamp_filters\": [],
+        \"ipv4\": {\"address\": \"127.0.0.1\", \"broadcast\": \"host\", \"netmask\":
+        \"255.0.0.0\", \"network\": \"127.0.0.0\"}, \"ipv6\": [{\"address\": \"::1\",
+        \"prefix\": \"128\", \"scope\": \"host\"}], \"mtu\": 65536, \"promisc\": false,
+        \"timestamping\": [\"tx_software\", \"rx_software\", \"software\"], \"type\":
+        \"loopback\"}, \"ansible_local\": {}, \"ansible_lsb\": {}, \"ansible_machine\":
+        \"x86_64\", \"ansible_machine_id\": \"bf9db6e8a6724b95bda745875ccc49e4\",
+        \"ansible_memfree_mb\": 168, \"ansible_memory_mb\": {\"nocache\": {\"free\":
+        3368, \"used\": 4516}, \"real\": {\"free\": 168, \"total\": 7884, \"used\":
+        7716}, \"swap\": {\"cached\": 0, \"free\": 7890, \"total\": 7892, \"used\":
+        2}}, \"ansible_memtotal_mb\": 7884, \"ansible_mounts\": [{\"block_available\":
+        12503129, \"block_size\": 4096, \"block_total\": 59166936, \"block_used\":
+        46663807, \"device\": \"/dev/mapper/cryptAntergos\", \"fstype\": \"ext4\",
+        \"inode_available\": 13067152, \"inode_total\": 15097856, \"inode_used\":
+        2030704, \"mount\": \"/\", \"options\": \"rw,noatime,discard,data=ordered\",
+        \"size_available\": 51212816384, \"size_total\": 242347769856, \"uuid\": \"f41e7144-bd76-4447-83de-bdabcd7b2009\"},
+        {\"block_available\": 127842, \"block_size\": 1024, \"block_total\": 245671,
+        \"block_used\": 117829, \"device\": \"/dev/sda2\", \"fstype\": \"ext4\", \"inode_available\":
+        65140, \"inode_total\": 65536, \"inode_used\": 396, \"mount\": \"/boot\",
+        \"options\": \"rw,noatime,discard,data=ordered\", \"size_available\": 130910208,
+        \"size_total\": 251567104, \"uuid\": \"9d1a5ef5-ff04-4bf0-a5b3-459f6ff26385\"},
+        {\"block_available\": 402541, \"block_size\": 512, \"block_total\": 403266,
+        \"block_used\": 725, \"device\": \"/dev/sda1\", \"fstype\": \"vfat\", \"inode_available\":
+        0, \"inode_total\": 0, \"inode_used\": 0, \"mount\": \"/boot/efi\", \"options\":
+        \"rw,noatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro\",
+        \"size_available\": 206100992, \"size_total\": 206472192, \"uuid\": \"7A44-190E\"},
+        {\"block_available\": 12503129, \"block_size\": 4096, \"block_total\": 59166936,
+        \"block_used\": 46663807, \"device\": \"/dev/mapper/cryptAntergos\", \"fstype\":
+        \"ext4\", \"inode_available\": 13067152, \"inode_total\": 15097856, \"inode_used\":
+        2030704, \"mount\": \"/var/lib/docker/plugins\", \"options\": \"rw,noatime,discard,data=ordered,bind\",
+        \"size_available\": 51212816384, \"size_total\": 242347769856, \"uuid\": \"f41e7144-bd76-4447-83de-bdabcd7b2009\"},
+        {\"block_available\": 12503129, \"block_size\": 4096, \"block_total\": 59166936,
+        \"block_used\": 46663807, \"device\": \"/dev/mapper/cryptAntergos\", \"fstype\":
+        \"ext4\", \"inode_available\": 13067152, \"inode_total\": 15097856, \"inode_used\":
+        2030704, \"mount\": \"/var/lib/docker/overlay2\", \"options\": \"rw,noatime,discard,data=ordered,bind\",
+        \"size_available\": 51212816384, \"size_total\": 242347769856, \"uuid\": \"f41e7144-bd76-4447-83de-bdabcd7b2009\"}],
+        \"ansible_nodename\": \"peterPanda-redux\", \"ansible_os_family\": \"Archlinux\",
+        \"ansible_pkg_mgr\": \"pacman\", \"ansible_processor\": [\"0\", \"GenuineIntel\",
+        \"Intel(R) Core(TM) i7-5500U CPU @ 2.40GHz\", \"1\", \"GenuineIntel\", \"Intel(R)
+        Core(TM) i7-5500U CPU @ 2.40GHz\", \"2\", \"GenuineIntel\", \"Intel(R) Core(TM)
+        i7-5500U CPU @ 2.40GHz\", \"3\", \"GenuineIntel\", \"Intel(R) Core(TM) i7-5500U
+        CPU @ 2.40GHz\"], \"ansible_processor_cores\": 2, \"ansible_processor_count\":
+        1, \"ansible_processor_threads_per_core\": 2, \"ansible_processor_vcpus\":
+        4, \"ansible_product_name\": \"XPS 13 9343\", \"ansible_product_serial\":
+        \"NA\", \"ansible_product_uuid\": \"NA\", \"ansible_product_version\": \"NA\",
+        \"ansible_python\": {\"executable\": \"/usr/bin/python\", \"has_sslcontext\":
+        true, \"type\": \"cpython\", \"version\": {\"major\": 3, \"micro\": 4, \"minor\":
+        6, \"releaselevel\": \"final\", \"serial\": 0}, \"version_info\": [3, 6, 4,
+        \"final\", 0]}, \"ansible_python_version\": \"3.6.4\", \"ansible_real_group_id\":
+        100, \"ansible_real_user_id\": 1000, \"ansible_selinux\": {\"status\": \"disabled\"},
+        \"ansible_selinux_python_present\": true, \"ansible_service_mgr\": \"systemd\",
+        \"ansible_swapfree_mb\": 7890, \"ansible_swaptotal_mb\": 7892, \"ansible_system\":
+        \"Linux\", \"ansible_system_capabilities\": [\"\"], \"ansible_system_capabilities_enforced\":
+        \"True\", \"ansible_system_vendor\": \"Dell Inc.\", \"ansible_uptime_seconds\":
+        1323, \"ansible_user_dir\": \"/home/asadik\", \"ansible_user_gecos\": \"Adil
+        Sadik,,,,\", \"ansible_user_gid\": 100, \"ansible_user_id\": \"asadik\", \"ansible_user_shell\":
+        \"/bin/bash\", \"ansible_user_uid\": 1000, \"ansible_userspace_architecture\":
+        \"x86_64\", \"ansible_userspace_bits\": \"64\", \"ansible_vethfd91915\": {\"active\":
+        true, \"device\": \"vethfd91915\", \"features\": {\"esp_hw_offload\": \"off
+        [fixed]\", \"esp_tx_csum_hw_offload\": \"off [fixed]\", \"fcoe_mtu\": \"off
+        [fixed]\", \"generic_receive_offload\": \"on\", \"generic_segmentation_offload\":
+        \"on\", \"highdma\": \"on\", \"hw_tc_offload\": \"off [fixed]\", \"l2_fwd_offload\":
+        \"off [fixed]\", \"large_receive_offload\": \"off [fixed]\", \"loopback\":
+        \"off [fixed]\", \"netns_local\": \"off [fixed]\", \"ntuple_filters\": \"off
+        [fixed]\", \"receive_hashing\": \"off [fixed]\", \"rx_all\": \"off [fixed]\",
+        \"rx_checksumming\": \"on\", \"rx_fcs\": \"off [fixed]\", \"rx_udp_tunnel_port_offload\":
+        \"off [fixed]\", \"rx_vlan_filter\": \"off [fixed]\", \"rx_vlan_offload\":
+        \"on\", \"rx_vlan_stag_filter\": \"off [fixed]\", \"rx_vlan_stag_hw_parse\":
+        \"on\", \"scatter_gather\": \"on\", \"tcp_segmentation_offload\": \"on\",
+        \"tx_checksum_fcoe_crc\": \"off [fixed]\", \"tx_checksum_ip_generic\": \"on\",
+        \"tx_checksum_ipv4\": \"off [fixed]\", \"tx_checksum_ipv6\": \"off [fixed]\",
+        \"tx_checksum_sctp\": \"on\", \"tx_checksumming\": \"on\", \"tx_esp_segmentation\":
+        \"off [fixed]\", \"tx_fcoe_segmentation\": \"off [fixed]\", \"tx_gre_csum_segmentation\":
+        \"on\", \"tx_gre_segmentation\": \"on\", \"tx_gso_partial\": \"off [fixed]\",
+        \"tx_gso_robust\": \"off [fixed]\", \"tx_ipxip4_segmentation\": \"on\", \"tx_ipxip6_segmentation\":
+        \"on\", \"tx_lockless\": \"on [fixed]\", \"tx_nocache_copy\": \"off\", \"tx_scatter_gather\":
+        \"on\", \"tx_scatter_gather_fraglist\": \"on\", \"tx_sctp_segmentation\":
+        \"on\", \"tx_tcp6_segmentation\": \"on\", \"tx_tcp_ecn_segmentation\": \"on\",
+        \"tx_tcp_mangleid_segmentation\": \"on\", \"tx_tcp_segmentation\": \"on\",
+        \"tx_udp_tnl_csum_segmentation\": \"on\", \"tx_udp_tnl_segmentation\": \"on\",
+        \"tx_vlan_offload\": \"on\", \"tx_vlan_stag_hw_insert\": \"on\", \"udp_fragmentation_offload\":
+        \"off\", \"vlan_challenged\": \"off [fixed]\"}, \"hw_timestamp_filters\":
+        [], \"ipv6\": [{\"address\": \"fe80::5838:6bff:fe95:ca39\", \"prefix\": \"64\",
+        \"scope\": \"link\"}], \"macaddress\": \"5a:38:6b:95:ca:39\", \"mtu\": 1500,
+        \"promisc\": true, \"speed\": 10000, \"timestamping\": [\"rx_software\", \"software\"],
+        \"type\": \"ether\"}, \"ansible_virtualization_role\": \"host\", \"ansible_virtualization_type\":
+        \"kvm\", \"ansible_wlp2s0\": {\"active\": true, \"device\": \"wlp2s0\", \"features\":
+        {\"esp_hw_offload\": \"off [fixed]\", \"esp_tx_csum_hw_offload\": \"off [fixed]\",
+        \"fcoe_mtu\": \"off [fixed]\", \"generic_receive_offload\": \"on\", \"generic_segmentation_offload\":
+        \"off [requested on]\", \"highdma\": \"off [fixed]\", \"hw_tc_offload\": \"off
+        [fixed]\", \"l2_fwd_offload\": \"off [fixed]\", \"large_receive_offload\":
+        \"off [fixed]\", \"loopback\": \"off [fixed]\", \"netns_local\": \"on [fixed]\",
+        \"ntuple_filters\": \"off [fixed]\", \"receive_hashing\": \"off [fixed]\",
+        \"rx_all\": \"off [fixed]\", \"rx_checksumming\": \"off [fixed]\", \"rx_fcs\":
+        \"off [fixed]\", \"rx_udp_tunnel_port_offload\": \"off [fixed]\", \"rx_vlan_filter\":
+        \"off [fixed]\", \"rx_vlan_offload\": \"off [fixed]\", \"rx_vlan_stag_filter\":
+        \"off [fixed]\", \"rx_vlan_stag_hw_parse\": \"off [fixed]\", \"scatter_gather\":
+        \"off\", \"tcp_segmentation_offload\": \"off\", \"tx_checksum_fcoe_crc\":
+        \"off [fixed]\", \"tx_checksum_ip_generic\": \"off [fixed]\", \"tx_checksum_ipv4\":
+        \"off [fixed]\", \"tx_checksum_ipv6\": \"off [fixed]\", \"tx_checksum_sctp\":
+        \"off [fixed]\", \"tx_checksumming\": \"off\", \"tx_esp_segmentation\": \"off
+        [fixed]\", \"tx_fcoe_segmentation\": \"off [fixed]\", \"tx_gre_csum_segmentation\":
+        \"off [fixed]\", \"tx_gre_segmentation\": \"off [fixed]\", \"tx_gso_partial\":
+        \"off [fixed]\", \"tx_gso_robust\": \"off [fixed]\", \"tx_ipxip4_segmentation\":
+        \"off [fixed]\", \"tx_ipxip6_segmentation\": \"off [fixed]\", \"tx_lockless\":
+        \"off [fixed]\", \"tx_nocache_copy\": \"off\", \"tx_scatter_gather\": \"off
+        [fixed]\", \"tx_scatter_gather_fraglist\": \"off [fixed]\", \"tx_sctp_segmentation\":
+        \"off [fixed]\", \"tx_tcp6_segmentation\": \"off [fixed]\", \"tx_tcp_ecn_segmentation\":
+        \"off [fixed]\", \"tx_tcp_mangleid_segmentation\": \"off [fixed]\", \"tx_tcp_segmentation\":
+        \"off [fixed]\", \"tx_udp_tnl_csum_segmentation\": \"off [fixed]\", \"tx_udp_tnl_segmentation\":
+        \"off [fixed]\", \"tx_vlan_offload\": \"off [fixed]\", \"tx_vlan_stag_hw_insert\":
+        \"off [fixed]\", \"udp_fragmentation_offload\": \"off\", \"vlan_challenged\":
+        \"off [fixed]\"}, \"hw_timestamp_filters\": [], \"ipv4\": {\"address\": \"172.31.98.226\",
+        \"broadcast\": \"172.31.99.255\", \"netmask\": \"255.255.254.0\", \"network\":
+        \"172.31.98.0\"}, \"ipv6\": [{\"address\": \"fe80::8a7e:ee36:6fd2:719c\",
+        \"prefix\": \"64\", \"scope\": \"link\"}], \"macaddress\": \"c4:8e:8f:f3:1c:f7\",
+        \"module\": \"wl\", \"mtu\": 1500, \"pciid\": \"0000:02:00.0\", \"promisc\":
+        false, \"timestamping\": [\"rx_software\", \"software\"], \"type\": \"ether\"},
+        \"gather_subset\": [\"all\"], \"module_setup\": true}, \"changed\": false}","message":"ansible
+        ok","@timestamp":"2018-02-05T00:51:07.124Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"127.0.0.1","ansible_task":"TASK:
+        Gathering Facts"}},{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"s_pyY2EBDN-WjKyhAbdO","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"changed\":
+        false, \"ping\": \"hi\"}","message":"ansible ok","@timestamp":"2018-02-05T00:51:07.442Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"127.0.0.1","ansible_task":"TASK:
+        say hi"}},{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"tPpyY2EBDN-WjKyhAbdO","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"changed\":
+        false, \"ping\": \"hi\"}","message":"ansible ok","@timestamp":"2018-02-05T00:51:07.451Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"localhost","ansible_task":"TASK:
+        say hi"}},{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"tfpyY2EBDN-WjKyhAbdO","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"changed\":
+        false, \"ping\": \"hi\"}","message":"ansible ok","@timestamp":"2018-02-05T00:51:07.690Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"localhost","ansible_task":"TASK:
+        say hi 2"}},{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"tvpyY2EBDN-WjKyhAbdO","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"changed\":
+        false, \"ping\": \"hi\"}","message":"ansible ok","@timestamp":"2018-02-05T00:51:07.698Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"127.0.0.1","ansible_task":"TASK:
+        say hi 2"}},{"_index":"ansible","_type":"%{[@metadata][type]}","_id":"t_pyY2EBDN-WjKyhAbdO","_score":1.0425596,"_source":{"logger_name":"python-logstash-logger","path":"/home/asadik/miniconda3/lib/python3.6/site-packages/ansible/plugins/callback/logstash.py","level":"INFO","status":"OK","ansible_playbook":"test3.yml","stack_info":null,"session":"a5cba87a-0a0e-11e8-b454-c48e8ff31cf7","port":33884,"type":"ansible","@version":"1","tags":[],"ansible_result":"{\"changed\":
+        false, \"ping\": \"hi\"}","message":"ansible ok","@timestamp":"2018-02-05T00:51:07.976Z","ansible_type":"task","host":"peterPanda-redux","ansible_host":"localhost","ansible_task":"TASK:
+        say hi 3"}}]}}'}
+    headers:
+      content-length: ['28893']
+      content-type: [application/json; charset=UTF-8]
+    status: {code: 200, message: OK}
+version: 1

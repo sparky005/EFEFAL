@@ -61,5 +61,11 @@ def session_tasks(playbook, session):
                             tasks=tasks,
                             finish=host_totals,
                             total=total)
+
+@bp.route('/devices')
+def devices():
+    devices = client.get_all_hosts()
+    return render_template('devices.html', devices=devices)
+
 app = create_app()
 client = SearchClient()
